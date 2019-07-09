@@ -39,5 +39,9 @@
   		
   		<mappers>
 			<mapper resource="sql/UserMapper.xml"/>
+			<mapper resource="sql/AccountMapper.xml"/>
+			<mapper resource="sql/CardMapper.xml"/>
+			<mapper resource="sql/StatementMapper.xml"/>
+			<mapper resource="sql/VendorMapper.xml"/>
 		</mappers>
   </configuration>
