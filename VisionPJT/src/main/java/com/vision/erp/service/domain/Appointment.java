@@ -2,6 +2,7 @@ package com.vision.erp.service.domain;
 
 public class Appointment {
 	//field
+	private String appointNo;
 	private String appointDate;
 	private String employeeNo;
 	private String employeeName;
@@ -23,8 +24,17 @@ public class Appointment {
 
 	//getter, setter
 	
+	
 	public String getAppointDate() {
 		return appointDate;
+	}
+
+	public String getAppointNo() {
+		return appointNo;
+	}
+
+	public void setAppointNo(String appointNo) {
+		this.appointNo = appointNo;
 	}
 
 	public void setAppointDate(String appointDate) {
@@ -118,16 +128,19 @@ public class Appointment {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
+
 	
 	//toString
 	@Override
 	public String toString() {
-		return "Appointment [appointDate=" + appointDate + ", employeeNo=" + employeeNo + ", employeeName="
-				+ employeeName + ", preDepartCodeNo=" + preDepartCodeNo + ", preDepartCodeName=" + preDepartCodeName
-				+ ", appointDepartCodeNo=" + appointDepartCodeNo + ", appointDepartCodeName=" + appointDepartCodeName
-				+ ", preRankCodeNo=" + preRankCodeNo + ", preRankCodeName=" + preRankCodeName + ", appointRankCodeNo="
-				+ appointRankCodeNo + ", appointRankCodeName=" + appointRankCodeName + ", reference=" + reference + "]";
+		return "Appointment [appointNo=" + appointNo + ", appointDate=" + appointDate + ", employeeNo=" + employeeNo
+				+ ", employeeName=" + employeeName + ", preDepartCodeNo=" + preDepartCodeNo + ", preDepartCodeName="
+				+ preDepartCodeName + ", appointDepartCodeNo=" + appointDepartCodeNo + ", appointDepartCodeName="
+				+ appointDepartCodeName + ", preRankCodeNo=" + preRankCodeNo + ", preRankCodeName=" + preRankCodeName
+				+ ", appointRankCodeNo=" + appointRankCodeNo + ", appointRankCodeName=" + appointRankCodeName
+				+ ", reference=" + reference + "]";
 	}
+	
 
 	
 

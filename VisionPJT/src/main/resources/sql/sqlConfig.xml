@@ -35,9 +35,20 @@
   			<typeAlias type="com.vision.erp.service.domain.Vendor" alias="vendor"/>
   			<typeAlias type="com.vision.erp.service.domain.WorkAttitude" alias="workAttitude"/>
   			<typeAlias type="com.vision.erp.service.domain.WorkAttitudeCode" alias="workAttitudeCode"/>
+  			<typeAlias type="com.vision.erp.service.domain.Department" alias="department"/>
   		</typeAliases>
   		
   		<mappers>
-			<mapper resource="sql/UserMapper.xml"/>
+
+			<!-- <mapper resource="sql/UserMapper.xml"/>
+			<mapper resource="sql/AccountMapper.xml"/>
+			<mapper resource="sql/CardMapper.xml"/>
+			<mapper resource="sql/StatementMapper.xml"/>
+			<mapper resource="sql/VendorMapper.xml"/>
+			<mapper resource="sql/MemberMapper.xml"/> -->
+			
+			<mapper resource="sql/humanresource/HumanResourceCardMapper.xml"/>
+			
+
 		</mappers>
   </configuration>

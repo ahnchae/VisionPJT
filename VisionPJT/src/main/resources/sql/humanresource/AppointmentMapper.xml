@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper>
+
+	<resultMap id="AppointmentSelectMap" type="appointment" >
+		<result property="appointNo" column="APPOINTMENT_NO" jdbcType="VARCHAR"/>
+		<result property="appointDate" column="APPOINTMENT_DATE" jdbcType="VARCHAR"/>
+		<result property="employeeNo" column="EMPLOYEE_NO" jdbcType="VARCHAR"/>
+		<result property="employeeName" column="EMPLOYEE_NAME" jdbcType="VARCHAR"/>
+		<result property="preDepartCodeNo" column="PRE_DEPART_CODE_NO" jdbcType="VARCHAR"/>
+		<result property="preDepartCodeName" column="PRE_DEPART_CODE_NAME" jdbcType="VARCHAR"/>
+		<result property="appointDepartCodeNo" column="APPOINTMENT_DEPART_CODE_NO" jdbcType="VARCHAR"/>
+		<result property="appointDepartCodeName" column="APPOINTMENT_DEPART_CODE_NAME" jdbcType="VARCHAR"/>
+		<result property="preRankCodeNo" column="PRE_RANK_CODE_NO" jdbcType="VARCHAR"/>
+		<result property="preRankCodeName" column="PRE_RANK_CODE_NAME" jdbcType="VARCHAR"/>
+		<result property="appointRankCodeNo" column="APPOINTMENT_RANK_CODE_NO" jdbcType="VARCHAR"/>
+		<result property="appointRankCodeName" column="APPOINTMENT_RANK_CODE_NAME" jdbcType="VARCHAR"/>
+		<result property="reference" column="REFER" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<insert id="insertAppointment">
+		INSERT
+		  INTO	APPOINTMENT
+		  			(
+		  			APPOINTMENT_NO
+		  		,	APPOINTMENT_DATE
+		  		,	EMPLOYEE_NO
+		  		,	PRE_DEPART_CODE_NO
+		  		,	APPOINTMENT_DEPART_CODE_NO
+		  		,	PRE_RANK_CODE_NO
+		  		,	APPOINTMENT_RANK_CODE_NO
+		  		,	APPOINTMENT_STATUS_CODE_NO
+		  		,	REFER
+		  			)
+		VALUES	
+				(
+					SEQ_APPOINTMENT_NO.NEXTVAL
+				,	#{appointDate}
+				,	#{employeeNo}
+				,	#{preDepartCodeNo}
+				,	#{appointDepartCodeNo}
+				,	#{preRankCodeNo}
+				,	#{appointRankCodeNo}
+				,	#{reference}
+				)
+	</insert>
+
+</mapper>
