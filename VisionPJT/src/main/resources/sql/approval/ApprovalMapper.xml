@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ApprovalMapper">
+ 		
+	<resultMap id="approvalSelectMap" type="approval">
+		<result property="approvalNo" 			column="GROUP_CODE" 			jdbcType="VARCHAR"/>
+		<result property="approvalTitle"	column="GROUP_CODE_NAME" 		jdbcType="VARCHAR" />
+		<result property="approvalContent" 	column="CODE_NO" 		jdbcType="VARCHAR" />
+		<result property="submitDate" 				column="CODE_NAME" 					jdbcType="VARCHAR" />
+		<result property="approvalFormNo" 				column="CODE_USAGE_STATUS" 					jdbcType="VARCHAR" />
+		<result property="approvalStatusCodeNo" 				column="CODE_No" 					jdbcType="VARCHAR" />
+		<result property="approvalStatusCodeName" 				column="CODE_Name" 					jdbcType="VARCHAR" />
+		<!-- Simple Human Resource Card는 association이긴 하지만 인사관리의 DAO를 이용해서 service 단에서 set메서드로 주입하는 것이 좋겠다. -->
+	</resultMap>
+	
+
+</mapper>

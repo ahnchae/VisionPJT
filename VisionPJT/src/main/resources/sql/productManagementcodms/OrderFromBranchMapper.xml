@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CodeMapper">
+ 		
+	<resultMap id="orderFromBranchSelectMap" type="orderFromBranch">
+		<result property="statementNo" 			column="STATEMENT_NO" 			jdbcType="VARCHAR"/>
+		<result property="orderFromBranchNo"	column="ORDER_FROM_BRANCH_NO" 		jdbcType="VARCHAR" />
+		<result property="orderFromBranchStatusCodeNo" 	column="CODE_NO" 		jdbcType="VARCHAR" />
+		<result property="orderFromBranchStatusCodeName" 				column="CODE_NAME" 					jdbcType="VARCHAR" />
+		<result property="orderFromBranchTotalAmount" 				column="CODE_USAGE_STATUS" 					jdbcType="VARCHAR" />
+		<result property="branchName" 				column="BRANCH_Name" 					jdbcType="VARCHAR" />
+		<result property="branchNo" 				column="BRANCH_NO" 					jdbcType="VARCHAR" />
+		<result property="orderDate" 				column="ORDER_DATE" 					jdbcType="VARCHAR" />
+	    <collection property="orderFromBranchProductList" ofType="orderFromBranchProduct">
+	      <result property="numbering" column="ORDER_BRANCH_PRODUCT_NUMBERING"/>
+	      <result property="productNo" column="PRODUCT_NO"/>
+	      <result property="productName" column="PRODUCT_Name"/>
+	      <result property="price" column="sales_price"/>
+	      <result property="orderFromBranchProductStatusCodeNo" column="code_no"/>
+	      <result property="orderFromBranchProductStatusCodeName" column="code_name"/>
+	      <result property="orderFromBranchNo" column="ORDER_FROM_BRANCH_NO"/>
+	      <result property="orderFromBranchProductQuantity" column="ORDER_QUANTITY"/>
+	      <result property="orderFromBranchProductAmount" column="AMOUNT"/>
+	    </collection>
+	</resultMap>
+	
+	<!-- [지점]주문요청-주문서등록 -->
+	<insert 	id="insertOrderFromBranch"		parameterType="orderFromBranch" >
+		<selectKey keyProperty="seq_order_from_branch.currval" resultType="java.util.Date" order="AFTER">
+	    	select seq_order_from_branch.currval FROM DUAL
+	  	</selectKey>
+	 	INSERT
+		INTO order_from_branch( ORDER_FROM_BRANCH_NO,BRANCH_NO, STATEMENT_NO, ORDER_DATE, TOTAL_ORDER_AMOUNT, ORDER_BRANCH_STATUS_CODE) 
+		VALUES	 (	seq_order_from_branch.nextval, #{branchNo}, #{statementNo}, #{orderDate}, #{totalOrderAmount}, '01')
+	</insert>
+	
+	<!-- [지점]주문요청-주문물품등록 -->
+	<insert 	id="insertOrderFromBranchProduct"		parameterType="orderFromBranchProduct" >
+	 	INSERT
+		INTO order_from_branch_product( ORDER_BRANCH_PRODUCT_NUMBERING, ORDER_FROM_BRANCH_NO, PRODUCT_NO, ORDER_QUANTITY, ORDER_PRICE, AMOUNT, ORDER_BRANCH_PROD_STATUS_CODE) 
+		VALUES	 (	seq_order_branch_prod.nextval, #{orderFromBranchNo}, #{productNo}, #{orderFromBranchProductQuantity}, #{price}, #{orderFromBranchProductAmount}, '01')
+	</insert>
+	 
+	<!-- [본사, 지점]주문서상태변경(주문취소요청, 주문취소확정, 주문완료) -->
+	<update	id="updateOrderFromBranchStatus" parameterType="orderFromBranch" >
+	   	UPDATE order_from_branch
+	   	<set>
+	   		order_branch_status_code = #{orderFromBranchStatusCodeNo}
+	   	</set>
+	   	WHERE order_from_branch_no = #{orderFromBranchNo}
+	</update>
+	
+	<!-- 주문서 리스트 가져오기(주문물품 채워서) 지점번호 searchKeyword에 채우기-->
+	<select 	id="selectOrderFromBranch"	parameterType="com.vision.erp.service.domain.Search"	resultMap="orderFromBranchSelectMap">
+		SELECT
+		ob.order_from_branch_no, ob.branch_no, ob.statement_no, ob.order_date, ob.total_order_amount, ob.order_branch_status_code,
+		 op.order_branch_product_numbering, op.order_from_branch_no, op.product_no, op.order_quantity, op.order_price, op.amount, op.order_branch_prod_status_code 		
+		FROM order_from_branch ob, order_from_branch_product op 
+		WHERE ob.order_from_branch_no = op.order_from_branch_no
+		<if test="searchKeyword!=null">
+			AND branch_no=#{searchKeyword}
+		</if>
+	</select>
+	
+	<!-- [본사]주문물품 상태변경(출하완료, 출하대기, 출하취소)  -->
+	<update	id="updateOrderFromBranchProductStatus" parameterType="orderFromBranchProduct" >
+	   	UPDATE order_from_branch_product
+	   	<set>
+	   		ORDER_BRANCH_PROD_STATUS_CODE = #{orderFromBranchProductStatusCodeNo}
+	   	</set>
+	   	WHERE order_branch_product_numbering = #{numbering}
+	</update>
+
+	<!-- [본사]주문물품 모두 출하완료인지 확인, 출하대기인 상품개수 return -->
+	<select	id="selectOrderFromBranchProduct" parameterType="orderFromBranch" >
+		SELECT
+		op.order_branch_product_numbering, op.order_from_branch_no, op.product_no, op.order_quantity, op.order_price, op.amount, op.order_branch_prod_status_code 		
+		FROM order_from_branch_product op 
+		WHERE order_from_branch_no = #{orderFromBranchNo}
+	</select>
+	
+</mapper>
