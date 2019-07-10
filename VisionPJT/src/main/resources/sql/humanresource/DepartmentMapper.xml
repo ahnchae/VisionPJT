@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DepartmentMapper">
+	
+	<resultMap id="DepartmentSelectMap" type="department">
+		<result property="departCodeNo" column="DEPART_CODE_NO" jdbcType="VARCHAR"/>
+		<result property="departCodeName" column="DEPART_CODE_NAME" jdbcType="VARCHAR"/>
+		<result property="accessMenuCodeNo" column="" jdbcType="VARCHAR"/>
+		<result property="accessMenuCodeName" column="" jdbcType="VARCHAR"/>
+		<result property="departUsageStatusCodeNo" column="" jdbcType="VARCHAR"/>
+		<result property="departUsageStatusCodeName" column="" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<insert id="insertDepartmnet" parameterType="department">
+		INSERT
+		  INTO	DEPARTMENT
+		  			(
+		  			DEPART_NUMBERING
+		  		,	DEPART_CODE_NO
+		  		,	ACCESS_MENU_CODE_NO
+		  		,	USAGE_STATUS_CODE_NO
+		  			)
+		VALUES	
+					(
+					SEQ_DEPARTMENT_NUMBERING.NEXTVAL
+				,	#{departCodeNo}
+				,	#{accessMenuCodeNo}
+				,	#{}
+					)
+	</insert>
+
+</mapper>

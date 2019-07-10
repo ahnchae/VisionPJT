@@ -5,10 +5,11 @@ public class WorkAttitudeCode {
 	private String workAttitudeCodeNo;
 	private String workAttitudeCodeName;
 	private String commuteApplyCode;
-	private String commuteStartTime;
-	private String commuteEndTime;
+	private String applyStartTime;
+	private String applyEndTime;
 	private String workType;
 	private String workDayOfWeek;
+	private String usageStatusCodeNo;
 	
 	//constructor
 	public WorkAttitudeCode() {
@@ -35,18 +36,23 @@ public class WorkAttitudeCode {
 	public void setCommuteApplyCode(String commuteApplyCode) {
 		this.commuteApplyCode = commuteApplyCode;
 	}
-	public String getCommuteStartTime() {
-		return commuteStartTime;
+	
+	public String getApplyStartTime() {
+		return applyStartTime;
 	}
-	public void setCommuteStartTime(String commuteStartTime) {
-		this.commuteStartTime = commuteStartTime;
+
+	public void setApplyStartTime(String applyStartTime) {
+		this.applyStartTime = applyStartTime;
 	}
-	public String getCommuteEndTime() {
-		return commuteEndTime;
+
+	public String getApplyEndTime() {
+		return applyEndTime;
 	}
-	public void setCommuteEndTime(String commuteEndTime) {
-		this.commuteEndTime = commuteEndTime;
+
+	public void setApplyEndTime(String applyEndTime) {
+		this.applyEndTime = applyEndTime;
 	}
+
 	public String getWorkType() {
 		return workType;
 	}
@@ -60,13 +66,25 @@ public class WorkAttitudeCode {
 		this.workDayOfWeek = workDayOfWeek;
 	}
 	
-	//toString
+
+	public String getUsageStatusCode() {
+		return usageStatusCodeNo;
+	}
+
+	public void setUsageStatusCode(String usageStatusCode) {
+		this.usageStatusCodeNo = usageStatusCode;
+	}
+
 	@Override
 	public String toString() {
 		return "WorkAttitudeCode [workAttitudeCodeNo=" + workAttitudeCodeNo + ", workAttitudeCodeName="
-				+ workAttitudeCodeName + ", commuteApplyCode=" + commuteApplyCode + ", commuteStartTime="
-				+ commuteStartTime + ", commuteEndTime=" + commuteEndTime + ", workType=" + workType
-				+ ", workDayOfWeek=" + workDayOfWeek + "]";
+				+ workAttitudeCodeName + ", commuteApplyCode=" + commuteApplyCode + ", applyStartTime=" + applyStartTime
+				+ ", applyEndTime=" + applyEndTime + ", workType=" + workType + ", workDayOfWeek=" + workDayOfWeek
+				+ ", usageStatusCode=" + usageStatusCodeNo + "]";
 	}
+
+	//toString
+	
+	
 
 }

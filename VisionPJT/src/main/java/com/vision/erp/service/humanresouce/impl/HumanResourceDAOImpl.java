@@ -2,6 +2,11 @@ package com.vision.erp.service.humanresouce.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
 import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.Appointment;
 import com.vision.erp.service.domain.Commute;
@@ -12,7 +17,11 @@ import com.vision.erp.service.domain.WorkAttitude;
 import com.vision.erp.service.domain.WorkAttitudeCode;
 import com.vision.erp.service.humanresouce.HumanResourceDAO;
 
+@Repository("humanResourceDAOImpl")
 public class HumanResourceDAOImpl implements HumanResourceDAO {
+	
+	@Resource(name = "sqlSession")
+	private SqlSession sqlSession;
 
 	@Override
 	public void insertHumanResource(HumanResourceCard humanResourceCard) throws Exception {
@@ -22,8 +31,8 @@ public class HumanResourceDAOImpl implements HumanResourceDAO {
 
 	@Override
 	public List<HumanResourceCard> selectHumanResourceCardList(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlSession.selectList("HumanResourceCardMapper.selectHumanResourceCardList");
 	}
 
 	@Override

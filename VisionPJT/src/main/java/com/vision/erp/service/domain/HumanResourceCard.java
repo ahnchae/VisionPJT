@@ -24,6 +24,7 @@ public class HumanResourceCard {
     private String signatureImage;
     private String contractFile;
     private String wage;
+    private String refer;
     
     //constructor
 	public HumanResourceCard() {
@@ -165,7 +166,15 @@ public class HumanResourceCard {
 		this.wage = wage;
 	}
 	
-	//toString
+	
+	public String getRefer() {
+		return refer;
+	}
+
+	public void setRefer(String refer) {
+		this.refer = refer;
+	}
+
 	@Override
 	public String toString() {
 		return "HumanResourceCard [employeeNo=" + employeeNo + ", employeeName=" + employeeName + ", departCodeNo="
@@ -175,8 +184,11 @@ public class HumanResourceCard {
 				+ ", resignDate=" + resignDate + ", resignReason=" + resignReason + ", account=" + account
 				+ ", zipCode=" + zipCode + ", address=" + address + ", detailAddress=" + detailAddress
 				+ ", profileImage=" + profileImage + ", signatureImage=" + signatureImage + ", contractFile="
-				+ contractFile + ", wage=" + wage + "]";
+				+ contractFile + ", wage=" + wage + ", refer=" + refer + "]";
 	}
+
+	//toString
+
     
     
 }
