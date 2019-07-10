@@ -5,11 +5,13 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.vision.erp.common.Search;
 import com.vision.erp.service.code.CodeDAO;
 import com.vision.erp.service.domain.Code;
 
+@Repository("codeDAOImpl")
 public class CodeDAOImpl implements CodeDAO {
 
 	//field

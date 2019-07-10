@@ -15,10 +15,14 @@
 		<result property="registrantEmployeeNo" 				column="REGISTRANT_EMPLOYEE_NO" 					jdbcType="VARCHAR" />
 		<result property="registrantEmployeeName" 				column="REGISTRANT_EMPLOYEE_NAME" 					jdbcType="VARCHAR" />
 		<result property="useCount" 				column="USE_COUNT" 					jdbcType="VARCHAR" />
+		<result property="approverCount" 				column="APPROVER_COUNT" 					jdbcType="VARCHAR" />
 	</resultMap>
 	
+	
+	
+	<!-- ////////////////////결재서양식///////////////////////////// -->
 	<!-- 결재서양식 리스트 가져오기 -->
-	<select	id="selectApprovalFormList" >
+	<select	id="selectApprovalFormList" resultMap="approvalFormSelectMap">
 		SELECT
 		approval_form_no, approval_form_name, approval_form, FORM_USAGE_STATUS_CODE, code_name, REGISTRANT_EMPLOYEE_NO, REGISTRANT_EMPLOYEE_NAME, use_count
 		FROM approvalForm
@@ -28,6 +32,46 @@
 	<insert 	id="insertApprovalForm"		parameterType="approvalForm" >
 	 	INSERT
 		INTO approval_form( approval_form_no, approval_form_name, approval_form, FORM_USAGE_STATUS_CODE, REGISTRANT_EMPLOYEE_NO, REGISTRANT_EMPLOYEE_NAME, use_count) 
-		VALUES	 (	seq_approval_form_no.nextval, #{approvalFormTitle} , #{approvalForm}, '01', #{registrantEmployeeNo}, #{registrantEmployeeName}, '0' )
-	 </insert>
+		VALUES (	seq_approval_form_no.nextval, #{approvalFormTitle} , #{approvalForm}, '01', #{registrantEmployeeNo}, #{registrantEmployeeName}, '0' )
+	</insert>
+	
+	<!-- 결재서양식 수정하기 -->
+	<update id="updateApprovalForm" parameterType="approvalForm">
+	   	UPDATE approval_form
+	   	<set>
+	   		approval_form_name = #{approvalFormTitle} ,
+	   		approval_form = #{approvalForm} ,
+	   		REGISTRANT_EMPLOYEE_NO = #{registrantEmployeeNo} ,
+	   		REGISTRANT_EMPLOYEE_NAME = #{registrantEmployeeName} ,
+	   	</set>
+	   	WHERE approval_form_no = #{approvalFormNo}
+	</update>
+	
+	<!-- 결재서양식 상세보기 -->
+	<select	id="selectApprovalFormDetail" parameterType="string" resultMap="approvalFormSelectMap">
+		SELECT
+		approval_form_no, approval_form_name, approval_form, FORM_USAGE_STATUS_CODE, code_name, REGISTRANT_EMPLOYEE_NO, REGISTRANT_EMPLOYEE_NAME, use_count
+		FROM approvalForm
+		WHERE approval_form_no = #{value}
+	</select>
+	
+	<!-- 결재서양식 삭제, 복구하기 -->
+	<update id="updateApprovalFormUsageStatus" parameterType="approvalForm">
+	   	UPDATE approval_form
+	   	<set>
+	   		FORM_USAGE_STATUS_CODE = #{approvalFormUsageStatusCodeNo} ,
+	   	</set>
+	   	WHERE approval_form_no = #{approvalFormNo}
+	</update>
+	
+	<!-- 결재서양식 useCount 올리기 -->
+	<update id="updateApprovalFormUseCount" parameterType="string">
+	   	UPDATE approval_form
+	   	<set>
+	   		USE_COUNT = use_count+1
+	   	</set>
+	   	WHERE approval_form_no = #{approvalFormNo}
+	</update>
+	
+
 </mapper>

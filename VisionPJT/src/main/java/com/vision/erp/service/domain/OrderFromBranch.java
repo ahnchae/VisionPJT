@@ -21,6 +21,30 @@ public class OrderFromBranch {
 		// TODO Auto-generated constructor stub
 	}
 
+	public OrderFromBranch(String statementNo, String orderFromBranchTotalAmount, String branchNo, String orderDate) {
+		super();
+		this.statementNo = statementNo;
+		this.orderFromBranchTotalAmount = orderFromBranchTotalAmount;
+		this.branchNo = branchNo;
+		this.orderDate = orderDate;
+	}
+
+	public OrderFromBranch(String statementNo, String orderFromBranchNo, String orderFromBranchStatusCodeNo,
+			String orderFromBranchStatusCodeName, String orderFromBranchTotalAmount, String branchName, String branchNo,
+			String orderDate, List<OrderFromBranchProduct> orderFromBranchProductList) {
+		super();
+		this.statementNo = statementNo;
+		this.orderFromBranchNo = orderFromBranchNo;
+		this.orderFromBranchStatusCodeNo = orderFromBranchStatusCodeNo;
+		this.orderFromBranchStatusCodeName = orderFromBranchStatusCodeName;
+		this.orderFromBranchTotalAmount = orderFromBranchTotalAmount;
+		this.branchName = branchName;
+		this.branchNo = branchNo;
+		this.orderDate = orderDate;
+		this.orderFromBranchProductList = orderFromBranchProductList;
+	}
+
+
 	//method
 	public String getStatementNo() {
 		return statementNo;

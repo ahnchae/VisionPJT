@@ -5,12 +5,14 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.OrderFromBranch;
 import com.vision.erp.service.domain.OrderFromBranchProduct;
 import com.vision.erp.service.productionmanagement.codms.ProductionManagementDAOcodms;
 
+@Repository("productManagementDAOImplcodms")
 public class ProductionManagementDAOImplcodms implements ProductionManagementDAOcodms {
 	//field
 	@Resource(name="sqlSession")
@@ -48,7 +50,7 @@ public class ProductionManagementDAOImplcodms implements ProductionManagementDAO
 	@Override
 	public int updateOrderFromBranchProductStatus(OrderFromBranchProduct orderFromBranchProduct) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("OrderFromBranchMapper.updateOrderFromBranchProductStatus", orderFromBranchProduct);
 	}
 
 	//[본사]주문물품 모두 출하완료인지 확인, 출하대기인 상품개수 return

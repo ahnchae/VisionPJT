@@ -17,6 +17,20 @@ public class OrderFromBranchProduct {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public OrderFromBranchProduct(String productNo, String price, String orderFromBranchNo,
+			String orderFromBranchProductQuantity, String orderFromBranchProductAmount) {
+		super();
+		this.productNo = productNo;
+		this.price = price;
+		this.orderFromBranchNo = orderFromBranchNo;
+		this.orderFromBranchProductQuantity = orderFromBranchProductQuantity;
+		this.orderFromBranchProductAmount = orderFromBranchProductAmount;
+	}
+
+
 
 	//method
 	public String getProductNo() {
