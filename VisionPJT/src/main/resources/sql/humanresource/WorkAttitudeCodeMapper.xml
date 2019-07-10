@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+		
+<mapper namespace="WorkAttitudeCodeMapper">
+
+	<resultMap id="WorkAttitudeCodeSelectMap" type="workAttitudeCode">
+		<result property="workAttitudeCodeNo" column="WORK_ATTITUDE_CODE" jdbcType="VARCHAR"/>
+		<result property="workAttitudeCodeName" column="WORK_ATTITUDE_CODE_NAME" jdbcType="VARCHAR"/>
+		<result property="commuteApplyCode" column="COMMUTE_APPLY_CODE" jdbcType="VARCHAR"/>
+		<result property="applyStartTime" column="APPLY_START_TIME" jdbcType="VARCHAR"/>
+		<result property="applyEndTime" column="APPLY_END_TIME" jdbcType="VARCHAR"/>
+		<result property="workType" column="WORK_TYPE" jdbcType="VARCHAR"/>
+		<result property="workDayOfWeek" column="WORK_DAY_OF_WEEK" jdbcType="VARCHAR"/>
+		<result property="usageStatusCodeNo" column="USAGE_STATUS_CODE_NO" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<insert id="insertWorkAttitudeCode" parameterType="workAttitudeCode">
+		INSERT
+		  INTO	WORK_ATTITUDE_CODE
+		  			(
+		  			WORK_ATTITUDE_CODE
+		  		,	WORK_ATTITUDE_CODE_NAME
+		  		,	COMMUTE_APPLY_CODE
+		  		,	APPLY_START_TIME
+		  		,	APPLY_END_TIME
+		  		,	WORK_TYPE
+		  		,	WORK_DAY_OF_WEEK
+		  		,	USAGE_STATUS_CODE_NO
+		  			)
+		VALUES	
+					(
+					SEQ_WORK_ATTITUDE_CODE.NEXTVAL
+				,	#{workAttitudeCodeName}
+				,	#{commuteApplyCode}
+				,	#{applyStartTime}
+				,	#{applyEndTime}
+				,	#{workType}
+				,	#{workDayOfWeek}
+				,	#{usageStatusCodeNo}
+					)
+	</insert>
+
+</mapper>

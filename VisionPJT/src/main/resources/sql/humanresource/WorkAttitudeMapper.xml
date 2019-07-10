@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="WorkAttitudeMapper">
+	<resultMap id="WorkAttitudeSelectMap" type="workAttitude" >
+		<result property="employeeNo" column="EMPLOYEE_NO" jdbcType="VARCHAR"/>
+		<result property="employeeName" column="EMPLOYEE_NAME" jdbcType="VARCHAR"/>
+		<result property="workAttitudeCodeNo" column="WORK_ATTITUDE_CODE" jdbcType="VARCHAR"/>
+		<result property="workAttitudeCodeName" column="WORK_ATTITUDE_CODE_NAME" jdbcType="VARCHAR"/>
+		<result property="workAttitudeTime" column="WORK_ATTITUDE_TIME" jdbcType="VARCHAR"/>
+		<result property="workAttitudeDate" column="WORK_ATTITUDE_DATE" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<insert id="insertWorkAttitude" parameterType="workAttitude">
+		INSERT
+		  INTO	WORK_ATTITUDE
+		  			(
+		  			WORK_ATTITUDE_NO
+		  		,	EMPLOYEE_NO
+		  		,	WORK_ATTITUDE_CODE
+		  		,	WORK_ATTITUDE_TIME
+		  		,	WORK_ATTITUDE_DATE
+		  			)
+		VALUES
+					(
+					SEQ_WORK_ATTITUDE_NO.NEXTVAL
+				,	#{employeeNo}
+				,	#{workAttitudeCodeNo}
+				,	#{workAttitudeTime}
+				,	#{workAttitudeDate}
+					)
+	</insert>
+
+</mapper>
