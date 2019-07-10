@@ -44,5 +44,43 @@
 				,	#{usageStatusCodeNo}
 					)
 	</insert>
+	
+	<select id="selectWorkAttitudeCodeList" parameterType="search" resultMap="WorkAttitudeCodeSelectMap">
+	 	SELECT	WORK_ATTITUDE_CODE
+	 		 ,	WORK_ATTITUDE_CODE_NAME
+	 		 ,	COMMUTE_APPLY_CODE
+	 		 ,	APPLY_START_TIME
+	 		 ,	APPLY_END_TIME
+	 		 ,	WORK_TYPE
+	 		 ,	WORK_DAY_OF_WEEK
+	 		 ,	USAGE_STATUS_CODE_NO
+	 	  FROM	WORK_ATTITUDE_CODE
+	</select>
+	
+	<update id="updateWorkAttitudeCode" parameterType="workAttitudeCode">
+		UPDATE	WORK_ATTITUDE_CODE
+		   SET	(
+		   		WORK_ATTITUDE_CODE_NAME		=	#{workAttitudeCodeName}
+		   	 ,	COMMUTE_APPLY_CODE			=	#{commuteApplyCode}
+		   	 ,	APPLY_START_TIME			=	#{applyStartTime}
+		   	 ,	APPLY_END_TIME				=	#{applyEndTime}
+		   	 ,	WORK_TYPE					=	#{workType}
+		   	 ,	WORK_DAY_OF_WEEK			=	#{workDayOfWeek}
+		   	 ,	USAGE_STATUS_CODE_NO		=	#{usageStatusCodeNo}
+		   		)
+	   <where>
+	   			WORK_ATTITUDE_CODE			=	#{workAttitudeCodeNo}
+	   </where>
+	</update>
+	
+	<update id="updateWorkAttitudeCodeUsageStatus" parameterType="map">
+		UPDATE	WORK_ATTITUDE_CODE
+		   SET	(
+		   		USAGE_STATUS_CODE_NO	=	#{usageStatus}	
+		   		)
+	   <where>
+	   			WORK_ATTITUDE_CODE		=	#{workAttitudeCodeNo}
+	   </where>
+	</update>
 
 </mapper>

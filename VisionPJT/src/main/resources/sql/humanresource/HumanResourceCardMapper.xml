@@ -5,6 +5,7 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		
 <mapper namespace="HumanResourceCardMapper">
+
 	<resultMap id="HumanResourceCardSelectMap" type="humanResourceCard" >
 		<result property="employeeNo" column="EMPLOYEE_NO" jdbcType="VARCHAR"/>
 		<result property="employeeName" column="EMPLOYEE_NAME" jdbcType="VARCHAR"/>
@@ -36,8 +37,22 @@
 			<result property="bankCodeNo" column="BANK_CODE_NO"/>
 			<result property="bankCodeName" column="BANK_CODE_NAME"/>
 		</association>
-		
 	</resultMap>
+	
+	<resultMap id="simpleHumanResourceCardDetail" type="simpleHumanResourceCard" >
+		<result property="employeeNo" column="" jdbcType="VARCHAR"/>
+		<result property="employeeName" column="" jdbcType="VARCHAR"/>
+		<result property="departCodeNo" column="" jdbcType="VARCHAR"/>
+		<result property="departCodeName" column="" jdbcType="VARCHAR"/>
+		<result property="rankCodeNo" column="" jdbcType="VARCHAR"/>
+		<result property="rankCodeName" column="" jdbcType="VARCHAR"/>
+		<result property="employeePhone" column="" jdbcType="VARCHAR"/>
+		<result property="profileImage" column="" jdbcType="VARCHAR"/>
+		<result property="signatureImage" column="" jdbcType="VARCHAR"/>
+		<result property="wage" column="" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+<!-- ////////////////////////////////////////////////////////////////////////////////////// -->
 	
 	<insert id="insertHumanResourceCard" parameterType="humanResourceCard">
 		INSERT  
@@ -83,29 +98,146 @@
 					)
 	</insert>
 	
-	<select id="selectHumanResourceCardList" resultMap="HumanResourceCardSelectMap">  
+	<select id="selectHumanResourceCardList" parameterType="search" resultMap="HumanResourceCardSelectMap">  
 		SELECT	EMPLOYEE_NO
-		  		,	EMPLOYEE_NAME
-		  		,	DEPART_CODE_NO
-		  		,	SSN
-		  		,	RANK_CODE_NO
-		  		,	CODE_FUNCTION('rank', RANK_CODE_NO) AS RANK_CODE_NAME
-		  		,	JOIN_DATE
-		  		,	EMPLOYEE_PHONE
-		  		,	EMPLOYEE_TEL
-		  		,	EMAIL
-		  		,	RESIGN_CODE
-		  		,	RESIGN_DATE
-		  		,	RESIGN_REASON
-		  		,	ZIP_CODE
-		  		,	ADDRESS
-		  		,	DETAIL_ADDRESS
-		  		,	PROFILE_IMAGE
-		  		,	SIGNATURE_IMAGE
-		  		,	CONTRACT_FILE
-		  		,	WAGE
-		  		,	REFER
-		  FROM	HUMAN_RESOURCE_CARD
+	  		 ,	hr.EMPLOYEE_NAME
+	  		 ,	hr.DEPART_CODE_NO
+	  		 ,	hr.SSN
+	  		 ,	hr.RANK_CODE_NO
+	  		 ,	CODE_FUNCTION('rank', hr.RANK_CODE_NO) AS RANK_CODE_NAME
+	  		 ,	hr.JOIN_DATE
+	  		 ,	hr.EMPLOYEE_PHONE
+	  		 ,	hr.EMPLOYEE_TEL
+	  		 ,	hr.EMAIL
+	  		 ,	hr.RESIGN_CODE
+	  		 ,	hr.RESIGN_DATE
+	  		 ,	hr.RESIGN_REASON
+	  		 ,	hr.ZIP_CODE
+	  		 ,	hr.ADDRESS
+	  		 ,	hr.DETAIL_ADDRESS
+	  		 ,	hr.PROFILE_IMAGE
+	  		 ,	hr.SIGNATURE_IMAGE
+	  		 ,	hr.CONTRACT_FILE
+	  		 ,	hr.WAGE
+	  		 ,	hr.REFER
+	  		 ,	a.ACCOUNT_REG_NO
+	  		 ,	a.ACCOUNT_NO
+	  		 ,	a.BANK_CODE_NO 
+	  		 ,	CODE_FUNCTION('bank', a.BANK_CODE_NO) AS BANK_CODE_NAME
+		  FROM	HUMAN_RESOURCE_CARD hr
+		  		,ACCOUNT a
+		  
+		  <where>
+		  	hr.ACCOUNT_REG_NO 	= 	a.ACCOUNT_REG_NO
+		  	<if test="searchKeyword != null">
+		   AND	EMPLOYEE_NO 	=	#{searchKeyword}
+		    OR	EMPLOYEE_NAME	=	#{searchKeyword}
+		  	</if>
+		  </where>
 	</select>
+	
+	<select id="selectHumanResourceCardDetailByEmployeeNo" parameterType="int" resultMap="HumanResourceCardSelectMap">
+		SELECT	hr.EMPLOYEE_NO
+	  		 ,	hr.EMPLOYEE_NAME
+	  		 ,	hr.DEPART_CODE_NO
+	  		 ,	hr.SSN
+	  		 ,	hr.RANK_CODE_NO
+	  		 ,	CODE_FUNCTION('rank', hr.RANK_CODE_NO) AS RANK_CODE_NAME
+	  		 ,	hr.JOIN_DATE
+	  		 ,	hr.EMPLOYEE_PHONE
+	  		 ,	hr.EMPLOYEE_TEL
+	  		 ,	hr.EMAIL
+	  		 ,	hr.RESIGN_CODE
+	  		 ,	hr.RESIGN_DATE
+	  		 ,	hr.RESIGN_REASON
+	  		 ,	hr.ZIP_CODE
+	  		 ,	hr.ADDRESS
+	  		 ,	hr.DETAIL_ADDRESS
+	  		 ,	hr.PROFILE_IMAGE
+	  		 ,	hr.SIGNATURE_IMAGE
+	  		 ,	hr.CONTRACT_FILE
+	  		 ,	hr.WAGE
+	  		 ,	hr.REFER
+	  		 ,	a.ACCOUNT_REG_NO
+	  		 ,	a.ACCOUNT_NO
+	  		 ,	a.BANK_CODE_NO 
+	  		 ,	CODE_FUNCTION('bank', a.BANK_CODE_NO) AS BANK_CODE_NAME
+		  FROM	HUMAN_RESOURCE_CARD hr
+		  		,ACCOUNT a
+		  
+		  <where>
+		  		hr.ACCOUNT_REG_NO = a.ACCOUNT_REG_NO
+		   AND 	hr.EMPLOYEE_NO = #{value}
+		  </where>	
+	</select>
+	
+	<select id="selectSimpleHumanResourceCardByEmployeeNo" parameterType="int" resultMap="simpleHumanResourceCardDetail">
+		SELECT	EMPLOYEE_NO
+			 ,	EMPLOYEE_NAME
+			 ,	DEPART_CODE_NO
+			 ,	CODE_FUNCTION('depart', DEPART_CODE_NO) AS DEPART_CODE_NAME
+			 ,	RANK_CODE_NO
+	  		 ,	CODE_FUNCTION('rank', RANK_CODE_NO) AS RANK_CODE_NAME
+	  		 ,	EMPLOYEE_PHONE
+	  		 ,	PROFILE_IMAGE
+	  		 ,	SIGNATURE_IMAGE
+	  		 ,	WAGE
+	  	  FROM	HUMAN_RESOURCE_CARD
+	  	  
+	  	  <where>
+	  	  		EMPLOYEE_NO = #{value}
+	  	  </where>
+	</select>
+	
+	<select id="selectSimpleHumanResourceCardList" parameterType="search">
+		SELECT	EMPLOYEE_NO
+			 ,	EMPLOYEE_NAME
+			 ,	DEPART_CODE_NO
+			 ,	CODE_FUNCTION('depart', DEPART_CODE_NO) AS DEPART_CODE_NAME
+			 ,	RANK_CODE_NO
+	  		 ,	CODE_FUNCTION('rank', RANK_CODE_NO) AS RANK_CODE_NAME
+	  		 ,	EMPLOYEE_PHONE
+	  		 ,	PROFILE_IMAGE
+	  		 ,	SIGNATURE_IMAGE
+	  		 ,	WAGE
+	  	  FROM	HUMAN_RESOURCE_CARD
+	  	  
+	  	  <where>
+		  	<if test="searchKeyword != null">
+		   AND	EMPLOYEE_NO 	=	#{searchKeyword}
+		    OR	EMPLOYEE_NAME	=	#{searchKeyword}
+		  	</if>
+		  </where>
+	  	  
+	</select>
+	
+	<update id="updateHumanResourceCard" parameterType="humanResourceCard">
+		UPDATE	HUMAN_RESOURCE_CARD
+		   SET	
+		   		(
+		   		EMPLOYEE_NAME	=	#{employeeName}
+		   	 ,	DEPART_CODE_NO	=	#{departCodeNo}
+		   	 ,	SSN				=	#{ssn}
+		   	 ,	RANK_CODE_NO	=	#{rankCodeNo}
+		   	 ,	JOIN_DATE		=	#{joinDate}
+		   	 ,	EMPLOYEE_PHONE	=	#{employeePhone}
+		   	 ,	EMPLOYEE_TEL	=	#{employeeTel}
+		   	 ,	EMAIL			=	#{employeeEmail}
+		   	 ,	RESIGN_CODE		=	#{resignation}
+		   	 ,	RESIGN_DATE		=	#{resignDate}
+		   	 ,	RESIGN_REASON	=	#{resignReason}
+		   	 ,	ZIP_CODE		=	#{zipCode}
+		   	 ,	ADDRESS			=	#{address}
+		   	 ,	DETAIL_ADDRESS	=	#{detailAddress}
+		   	 ,	PROFILE_IMAGE	=	#{profileImage}
+		   	 ,	SIGNATURE_IMAGE	=	#{signatureImage}
+		   	 ,	CONTRACT_FILE	=	#{contractFile}
+		   	 ,	WAGE			=	#{wage}
+		   	 ,	REFER			=	#{refer}
+		   		)
+		   	<where>
+		   		EMPLOYEE_NO 	= 	{employeeNo}
+		   	</where>
+	</update>
 
 </mapper>
