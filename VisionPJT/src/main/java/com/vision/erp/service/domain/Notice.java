@@ -6,6 +6,7 @@ public class Notice {
 	private String noticeRegDate;
 	private String noticeTitle;
 	private String content;
+	private String employeeNo;
 	private String employeeName;
 	private String departCodeName;
 	private String readAuthority;
@@ -19,6 +20,14 @@ public class Notice {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String getEmployeeNo() {
+		return employeeNo;
+	}
+
+	public void setEmployeeNo(String employeeNo) {
+		this.employeeNo = employeeNo;
+	}
+
 	//getter, setter
 	public String getNoticeNo() {
 		return noticeNo;
@@ -80,14 +89,13 @@ public class Notice {
 	public void setNoticeStatusCodeName(String noticeStatusCodeName) {
 		this.noticeStatusCodeName = noticeStatusCodeName;
 	}
-	
-	//toString
+
 	@Override
 	public String toString() {
 		return "Notice [noticeNo=" + noticeNo + ", noticeRegDate=" + noticeRegDate + ", noticeTitle=" + noticeTitle
-				+ ", content=" + content + ", employeeName=" + employeeName + ", departCodeName=" + departCodeName
-				+ ", readAuthority=" + readAuthority + ", viewCount=" + viewCount + ", noticeStatusCodeNo="
-				+ noticeStatusCodeNo + ", noticeStatusCodeName=" + noticeStatusCodeName + "]";
-	}
+				+ ", content=" + content + ", employeeNo=" + employeeNo + ", employeeName=" + employeeName
+				+ ", departCodeName=" + departCodeName + ", readAuthority=" + readAuthority + ", viewCount=" + viewCount
+				+ ", noticeStatusCodeNo=" + noticeStatusCodeNo + ", noticeStatusCodeName=" + noticeStatusCodeName + "]";
+	}	
 	
 }
