@@ -6,14 +6,15 @@ public class Approval {
 	private String approvalTitle;
 	private String approvalContent;
 	private String submitDate;
-	private SimpleHumanResourceCard firstApprover;
-	private SimpleHumanResourceCard secondApprover;
-	private SimpleHumanResourceCard thirdApprover;
-	private SimpleHumanResourceCard fourthApprover;
-	private SimpleHumanResourceCard fifthApprover;
+	private Approver firstApprover;
+	private Approver secondApprover;
+	private Approver thirdApprover;
+	private Approver fourthApprover;
+	private Approver fifthApprover;
 	private String approvalFormNo;
 	private String approvalStatusCodeNo;
 	private String approvalStatusCodeName;
+	private String approverCount;
 	
 	//constructor
 	public Approval() {
@@ -47,36 +48,47 @@ public class Approval {
 	public void setSubmitDate(String submitDate) {
 		this.submitDate = submitDate;
 	}
-	public SimpleHumanResourceCard getFirstApprover() {
+
+	public Approver getFirstApprover() {
 		return firstApprover;
 	}
-	public void setFirstApprover(SimpleHumanResourceCard firstApprover) {
+
+	public void setFirstApprover(Approver firstApprover) {
 		this.firstApprover = firstApprover;
 	}
-	public SimpleHumanResourceCard getSecondApprover() {
+
+	public Approver getSecondApprover() {
 		return secondApprover;
 	}
-	public void setSecondApprover(SimpleHumanResourceCard secondApprover) {
+
+	public void setSecondApprover(Approver secondApprover) {
 		this.secondApprover = secondApprover;
 	}
-	public SimpleHumanResourceCard getThirdApprover() {
+
+	public Approver getThirdApprover() {
 		return thirdApprover;
 	}
-	public void setThirdApprover(SimpleHumanResourceCard thirdApprover) {
+
+	public void setThirdApprover(Approver thirdApprover) {
 		this.thirdApprover = thirdApprover;
 	}
-	public SimpleHumanResourceCard getFourthApprover() {
+
+	public Approver getFourthApprover() {
 		return fourthApprover;
 	}
-	public void setFourthApprover(SimpleHumanResourceCard fourthApprover) {
+
+	public void setFourthApprover(Approver fourthApprover) {
 		this.fourthApprover = fourthApprover;
 	}
-	public SimpleHumanResourceCard getFifthApprover() {
+
+	public Approver getFifthApprover() {
 		return fifthApprover;
 	}
-	public void setFifthApprover(SimpleHumanResourceCard fifthApprover) {
+
+	public void setFifthApprover(Approver fifthApprover) {
 		this.fifthApprover = fifthApprover;
 	}
+
 	public String getApprovalFormNo() {
 		return approvalFormNo;
 	}
@@ -95,6 +107,15 @@ public class Approval {
 	public void setApprovalStatusCodeName(String approvalStatusCodeName) {
 		this.approvalStatusCodeName = approvalStatusCodeName;
 	}
+	public String getApproverCount() {
+		return approverCount;
+	}
+
+	public void setApproverCount(String approverCount) {
+		this.approverCount = approverCount;
+	}
+
+	//toString
 	@Override
 	public String toString() {
 		return "Approval [approvalNo=" + approvalNo + ", approvalTitle=" + approvalTitle + ", approvalContent="
@@ -102,7 +123,7 @@ public class Approval {
 				+ ", secondApprover=" + secondApprover + ", thirdApprover=" + thirdApprover + ", fourthApprover="
 				+ fourthApprover + ", fifthApprover=" + fifthApprover + ", approvalFormNo=" + approvalFormNo
 				+ ", approvalStatusCodeNo=" + approvalStatusCodeNo + ", approvalStatusCodeName="
-				+ approvalStatusCodeName + "]";
+				+ approvalStatusCodeName + ", approverCount=" + approverCount + "]";
 	}
 	
 	

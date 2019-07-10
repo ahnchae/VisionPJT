@@ -2,6 +2,7 @@ package com.vision.erp.service.domain;
 
 public class OrderFromBranchProduct {
 	//field
+	private String numbering;
 	private String productNo;
 	private String productName;
 	private String price;
@@ -16,6 +17,20 @@ public class OrderFromBranchProduct {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public OrderFromBranchProduct(String productNo, String price, String orderFromBranchNo,
+			String orderFromBranchProductQuantity, String orderFromBranchProductAmount) {
+		super();
+		this.productNo = productNo;
+		this.price = price;
+		this.orderFromBranchNo = orderFromBranchNo;
+		this.orderFromBranchProductQuantity = orderFromBranchProductQuantity;
+		this.orderFromBranchProductAmount = orderFromBranchProductAmount;
+	}
+
+
 
 	//method
 	public String getProductNo() {
@@ -82,15 +97,23 @@ public class OrderFromBranchProduct {
 		this.orderFromBranchProductAmount = orderFromBranchProductAmount;
 	}
 
+	public String getNumbering() {
+		return numbering;
+	}
+
+	public void setNumbering(String numbering) {
+		this.numbering = numbering;
+	}
+
 	//toString
 	@Override
 	public String toString() {
-		return "OrderFromBranchProduct [productNo=" + productNo + ", productName=" + productName + ", price=" + price
-				+ ", orderFromBranchProductStatusCodeNo=" + orderFromBranchProductStatusCodeNo
-				+ ", orderFromBranchProductStatusCodeName=" + orderFromBranchProductStatusCodeName
-				+ ", orderFromBranchNo=" + orderFromBranchNo + ", orderFromBranchProductQuantity="
-				+ orderFromBranchProductQuantity + ", orderFromBranchProductAmount=" + orderFromBranchProductAmount
-				+ "]";
+		return "OrderFromBranchProduct [numbering=" + numbering + ", productNo=" + productNo + ", productName="
+				+ productName + ", price=" + price + ", orderFromBranchProductStatusCodeNo="
+				+ orderFromBranchProductStatusCodeNo + ", orderFromBranchProductStatusCodeName="
+				+ orderFromBranchProductStatusCodeName + ", orderFromBranchNo=" + orderFromBranchNo
+				+ ", orderFromBranchProductQuantity=" + orderFromBranchProductQuantity
+				+ ", orderFromBranchProductAmount=" + orderFromBranchProductAmount + "]";
 	}
 	
 }

@@ -36,19 +36,43 @@
   			<typeAlias type="com.vision.erp.service.domain.WorkAttitude" alias="workAttitude"/>
   			<typeAlias type="com.vision.erp.service.domain.WorkAttitudeCode" alias="workAttitudeCode"/>
   			<typeAlias type="com.vision.erp.service.domain.Department" alias="department"/>
+  			<typeAlias type="com.vision.erp.service.domain.Approver" alias="approver"/>
+  			<typeAlias type="com.vision.erp.common.Search" alias="search"/>
   		</typeAliases>
   		
   		<mappers>
-
-			<!-- <mapper resource="sql/UserMapper.xml"/>
-			<mapper resource="sql/AccountMapper.xml"/>
-			<mapper resource="sql/CardMapper.xml"/>
-			<mapper resource="sql/StatementMapper.xml"/>
-			<mapper resource="sql/VendorMapper.xml"/>
-			<mapper resource="sql/MemberMapper.xml"/> -->
+			<!-- Moon -->
+			 <mapper resource="sql/humanresource/AppointmentMapper.xml"/>
+			 <mapper resource="sql/humanresource/CommuteMapper.xml"/>
+			 <mapper resource="sql/humanresource/DepartmentMapper.xml"/>
+			 <mapper resource="sql/humanresource/HumanResourceCardMapper.xml"/>
+			 <mapper resource="sql/humanresource/WorkAttitudeCodeMapper.xml"/>
+			 <mapper resource="sql/humanresource/WorkAttitudeMapper.xml"/>
 			
-			<mapper resource="sql/humanresource/HumanResourceCardMapper.xml"/>
-			
+			<!-- Ahn -->
+			 <mapper resource="sql/approval/ApprovalFormMapper.xml"/>
+			 <mapper resource="sql/approval/ApprovalMapper.xml"/>
+		 	 <mapper resource="sql/code/CodeMapper.xml"/>
+		 	 <mapper resource="sql/productManagementcodms/OrderFromBranchMapper.xml"/>
 
+			<!-- Shin -->
+             <mapper resource="sql/accounting/AccountMapper.xml"/>
+             <mapper resource="sql/accounting/CardMapper.xml"/>
+             <mapper resource="sql/accounting/SalaryBookMapper.xml"/>
+             <mapper resource="sql/accounting/SalaryMapper.xml"/>
+             <mapper resource="sql/accounting/StatementMapper.xml"/>
+             <mapper resource="sql/accounting/VendorMapper.xml"/>
+              
+            <!-- Han -->
+             <mapper resource="sql/businessSupport/BranchMapper.xml"/>
+             <mapper resource="sql/notice/NoticeMapper.xml"/>
+             <mapper resource="sql/branch/SalesProductMapper.xml"/>
+             <mapper resource="sql/branch/SalesMenuMapper.xml"/>
+              
+            <!-- Park -->
+             <mapper resource="sql/user/UserMapper.xml"/>
+             <mapper resource="sql/productionmanagementrudwn/OrderToVendorMapper.xml"/>
+             <mapper resource="sql/productionmanagementrudwn/OrderToVendorProductMapper.xml"/>
+             <mapper resource="sql/productionmanagementrudwn/ProductMapper.xml"/>
 		</mappers>
   </configuration>
