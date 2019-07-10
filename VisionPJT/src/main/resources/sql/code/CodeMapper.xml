@@ -20,6 +20,7 @@
 		group_code, group_code_name, code_no, code_name, code_usage_status		
 		FROM code
 		WHERE code_usage_status = 'Y'
+		ORDER BY group_code ASC, code_no ASC
 	 </select>
 	 
 	 <!-- 코드 등록하기 -->
@@ -31,11 +32,12 @@
 	 
 	 
 	 <!-- 코드 리스트 가져오기 -->
-	 <select 	id="selectCodeList"	parameterType="com.vision.erp.service.domain.Search"	resultMap="codeSelectMap">
+	 <select 	id="selectCodeList"	parameterType="search"	resultMap="codeSelectMap">
 		SELECT
 		group_code, group_code_name, code_no, code_name, code_usage_status	
 		FROM code 
-		WHERE code_usage_status = 'Y' AND group_code = #{searchKeyowrd}
+		WHERE code_usage_status = 'Y' AND group_code = #{searchKeyword}
+		ORDER BY code_no ASC
 	 </select>
 	 
 	 <!-- 코드명 수정하기 -->
