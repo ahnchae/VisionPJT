@@ -14,6 +14,7 @@ public class Branch {
 	private String localCodeNo;
 	private String localCodeName;
 	private String branchStatusCodeNo;
+	private String branchRegDate;
 	
 	//constructor
 	public Branch() {
@@ -118,16 +119,21 @@ public class Branch {
 		this.branchStatusCodeNo = branchStatusCodeNo;
 	}
 
-	//toString
+	public String getBranchRegDate() {
+		return branchRegDate;
+	}
+
+	public void setBranchRegDate(String branchRegDate) {
+		this.branchRegDate = branchRegDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Branch [branchNo=" + branchNo + ", branchName=" + branchName + ", zipCode=" + zipCode + ", address="
 				+ address + ", detailAdress=" + detailAdress + ", businessLicenseNo=" + businessLicenseNo
 				+ ", branchTel=" + branchTel + ", branchManagerPhone=" + branchManagerPhone + ", branchManagerName="
 				+ branchManagerName + ", localCodeNo=" + localCodeNo + ", localCodeName=" + localCodeName
-				+ ", branchStatusCodeNo=" + branchStatusCodeNo + "]";
+				+ ", branchStatusCodeNo=" + branchStatusCodeNo + ", branchRegDate=" + branchRegDate + "]";
 	}
-	
-	
 	
 }
