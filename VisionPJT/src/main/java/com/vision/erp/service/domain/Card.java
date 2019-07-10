@@ -9,6 +9,7 @@ public class Card {
 	private String cardRegNo;
 	private String cardNo;
 	private String cardManager;
+	private String cardManagerName;
 	private String cardCategoryCodeNo;
 	private String cardCategoryCodeName;
 	private String cardName;
@@ -16,7 +17,6 @@ public class Card {
 	private String cardCompanyCodeName;
 	private String cardImage;
 	private String cardUsageStatusCodeNo;
-	private String cardUsageStatusCodeName;
 	private String accountNo;
 	
 	public String getCardRegNo() {
@@ -36,6 +36,12 @@ public class Card {
 	}
 	public void setCardManager(String cardManager) {
 		this.cardManager = cardManager;
+	}
+	public String getCardManagerName() {
+		return cardManagerName;
+	}
+	public void setCardManagerName(String cardManagerName) {
+		this.cardManagerName = cardManagerName;
 	}
 	public String getCardCategoryCodeNo() {
 		return cardCategoryCodeNo;
@@ -79,12 +85,6 @@ public class Card {
 	public void setCardUsageStatusCodeNo(String cardUsageStatusCodeNo) {
 		this.cardUsageStatusCodeNo = cardUsageStatusCodeNo;
 	}
-	public String getCardUsageStatusCodeName() {
-		return cardUsageStatusCodeName;
-	}
-	public void setCardUsageStatusCodeName(String cardUsageStatusCodeName) {
-		this.cardUsageStatusCodeName = cardUsageStatusCodeName;
-	}
 	public String getAccountNo() {
 		return accountNo;
 	}
@@ -95,12 +95,11 @@ public class Card {
 	@Override
 	public String toString() {
 		return "Card [cardRegNo=" + cardRegNo + ", cardNo=" + cardNo + ", cardManager=" + cardManager
-				+ ", cardCategoryCodeNo=" + cardCategoryCodeNo + ", cardCategoryCodeName=" + cardCategoryCodeName
-				+ ", cardName=" + cardName + ", cardCompanyCodeNo=" + cardCompanyCodeNo + ", cardCompanyCodeName="
-				+ cardCompanyCodeName + ", cardImage=" + cardImage + ", cardUsageStatusCodeNo=" + cardUsageStatusCodeNo
-				+ ", cardUsageStatusCodeName=" + cardUsageStatusCodeName + ", accountNo=" + accountNo + "]";
+				+ ", cardManagerName=" + cardManagerName + ", cardCategoryCodeNo=" + cardCategoryCodeNo
+				+ ", cardCategoryCodeName=" + cardCategoryCodeName + ", cardName=" + cardName + ", cardCompanyCodeNo="
+				+ cardCompanyCodeNo + ", cardCompanyCodeName=" + cardCompanyCodeName + ", cardImage=" + cardImage
+				+ ", cardUsageStatusCodeNo=" + cardUsageStatusCodeNo + ", accountNo=" + accountNo + "]";
 	}
-	
-	
 
+	
 }
