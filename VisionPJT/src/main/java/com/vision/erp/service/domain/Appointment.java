@@ -14,6 +14,8 @@ public class Appointment {
 	private String preRankCodeName;
 	private String appointRankCodeNo;
 	private String appointRankCodeName;
+	private String appointmentStatusCodeNo;
+	private String appointmentStatusCodeName;
 	private String reference;
 	
 	//constructor
@@ -121,6 +123,22 @@ public class Appointment {
 		this.appointRankCodeName = appointRankCodeName;
 	}
 
+	public String getAppointmentStatusCodeNo() {
+		return appointmentStatusCodeNo;
+	}
+
+	public void setAppointmentStatusCodeNo(String appointmentStatusCodeNo) {
+		this.appointmentStatusCodeNo = appointmentStatusCodeNo;
+	}
+
+	public String getAppointmentStatusCodeName() {
+		return appointmentStatusCodeName;
+	}
+
+	public void setAppointmentStatusCodeName(String appointmentStatusCodeName) {
+		this.appointmentStatusCodeName = appointmentStatusCodeName;
+	}
+
 	public String getReference() {
 		return reference;
 	}
@@ -129,8 +147,6 @@ public class Appointment {
 		this.reference = reference;
 	}
 
-	
-	//toString
 	@Override
 	public String toString() {
 		return "Appointment [appointNo=" + appointNo + ", appointDate=" + appointDate + ", employeeNo=" + employeeNo
@@ -138,10 +154,9 @@ public class Appointment {
 				+ preDepartCodeName + ", appointDepartCodeNo=" + appointDepartCodeNo + ", appointDepartCodeName="
 				+ appointDepartCodeName + ", preRankCodeNo=" + preRankCodeNo + ", preRankCodeName=" + preRankCodeName
 				+ ", appointRankCodeNo=" + appointRankCodeNo + ", appointRankCodeName=" + appointRankCodeName
-				+ ", reference=" + reference + "]";
+				+ ", appointmentStatusCodeNo=" + appointmentStatusCodeNo + ", appointmentStatusCodeName="
+				+ appointmentStatusCodeName + ", reference=" + reference + "]";
 	}
-	
-
-	
+		
 
 }

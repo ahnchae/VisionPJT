@@ -14,6 +14,25 @@ public class Code {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Code(String groupCode, String groupCodeName, String codeNo, String codeName) {
+		super();
+		this.groupCode = groupCode;
+		this.groupCodeName = groupCodeName;
+		this.codeNo = codeNo;
+		this.codeName = codeName;
+	}
+
+
+	public Code(String groupCode, String groupCodeName, String codeNo, String codeName, String codeUsageStatus) {
+		super();
+		this.groupCode = groupCode;
+		this.groupCodeName = groupCodeName;
+		this.codeNo = codeNo;
+		this.codeName = codeName;
+		this.codeUsageStatus = codeUsageStatus;
+	}
+
+
 	//getter, setter
 	public String getGroupCode() {
 		return groupCode;

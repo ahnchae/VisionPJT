@@ -1,10 +1,10 @@
 package com.vision.erp.service.domain;
 
-public class Member {
+public class User {
 	//field
 	private String userId;
-	private SimpleHumanResourceCard employeeNo;
-	private Branch branchNo;
+	private String employeeNo;
+	private String branchNo;
 	private String password;
 	private String memberCodeNo;
 	private String memberCodeName;
@@ -12,7 +12,7 @@ public class Member {
 	private String accessMenuCodeNo;
 	
 	//constructor
-	public Member() {
+	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -26,19 +26,19 @@ public class Member {
 		this.userId = userId;
 	}
 
-	public SimpleHumanResourceCard getEmployeeNo() {
+	public String getEmployeeNo() {
 		return employeeNo;
 	}
 
-	public void setEmployeeNo(SimpleHumanResourceCard employeeNo) {
+	public void setEmployeeNo(String employeeNo) {
 		this.employeeNo = employeeNo;
 	}
 
-	public Branch getBranchNo() {
+	public String getBranchNo() {
 		return branchNo;
 	}
 
-	public void setBranchNo(Branch branchNo) {
+	public void setBranchNo(String branchNo) {
 		this.branchNo = branchNo;
 	}
 

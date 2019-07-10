@@ -5,7 +5,7 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		
-<mapper>
+<mapper namespace="CommuteMapper">
 
 	<resultMap id="CommuteSelectMap" type="commute" >
 		<result property="employeeNo" column="EMPLOYEE_NO" jdbcType="VARCHAR"/>
@@ -22,7 +22,7 @@
 	</resultMap>
 	
 	
-	<insert id="InsertCommute" parameterType="commute">
+	<insert id="insertCommute" parameterType="commute">
 		INSERT
 		  INTO	COMMUTE
 		  			(
@@ -39,6 +39,25 @@
 				,	sysdate
 					)
 	</insert>
+	
+	<select id="selectCommuteList" parameterType="int" resultMap="CommuteSelectMap">
+		SELECT	EMPLOYEE_NO
+			 ,	GO_TO_WORK_TIME
+			 ,	LEAVE_WORK_TIME
+			 ,	COMMUTE_DATE
+		  FROM	COMMUTE
+		 WHERE	EMPLOYEE_NO	=	#{value}
+	</select>
+	
+	<update id="updateCommuteForLeaveWorkTime" parameterType="commute">
+		UPDATE	COMMUTE
+		   SET	
+		   		(
+		   		LEAVE_WORK_TIME
+		   		)
+		 WHERE	EMPLOYEE_NO		=	#{employeeNo}
+		   AND	COMMUTE_DATE	=	#{commuteDate}
+	</update>
 	
 	<!-- DutyHours -->
 	<insert id="insertDutyHours" parameterType="dutyHours">
