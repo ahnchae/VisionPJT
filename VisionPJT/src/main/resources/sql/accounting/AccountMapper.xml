@@ -90,23 +90,17 @@
 		FROM
 			account
 		<where>
-			<if test="searchCondition != null">
-				<choose>
-					<when test="searchCondition == 0 and searchkeyword != ''">
-						AND usage_status_code_no = #{searchKeyword}
-					</when>		
-					<when test="searchCondition == 1 and searchkeyword != ''">
-						AND usage_status_code_no = #{searchKeyword}
-					</when>		
-					<when test="searchCondition == 2 and searchkeyword != ''">
-						AND account_reg_no = #{searchKeyword}
-					</when>
-					<when test="searchCondition == 3 and searchkeyword != ''">
-						AND LOWER(reference) LIKE '%'||#{searchKeyword}||'%'
-					</when>
-				</choose>
-			</if>
+			<choose>
+				<when test="searchKeyword != null and searchKeyword != ''">
+					AND account_reg_no = #{searchKeyword}
+					OR LOWER(reference) LIKE '%'||#{searchKeyword}||'%'
+				</when>		
+				<when test="usageCondition != null and usageCondition !=''">
+					AND	usage_status_code_no = #{usageCondition}
+				</when>
+			</choose>
 		</where>
+		ORDER BY account_reg_no ASC
 	</select>
 	
 	<select id="checkDuplicateAccount" parameterType="int" resultMap="accountSelectMap">

@@ -14,8 +14,8 @@ public class Statement {
 	private String statementCategoryCodeNo;
 	private String statementCategoryCodeName;
 	private String statementUsageStatusCodeNo;
-	private String statementUsageStatusCodeName;
 	private String statementDetail;
+	
 	public String getStatementNo() {
 		return statementNo;
 	}
@@ -64,12 +64,6 @@ public class Statement {
 	public void setStatementUsageStatusCodeNo(String statementUsageStatusCodeNo) {
 		this.statementUsageStatusCodeNo = statementUsageStatusCodeNo;
 	}
-	public String getStatementUsageStatusCodeName() {
-		return statementUsageStatusCodeName;
-	}
-	public void setStatementUsageStatusCodeName(String statementUsageStatusCodeName) {
-		this.statementUsageStatusCodeName = statementUsageStatusCodeName;
-	}
 	public String getStatementDetail() {
 		return statementDetail;
 	}
@@ -82,15 +76,8 @@ public class Statement {
 		return "Statement [statementNo=" + statementNo + ", tradeTargetName=" + tradeTargetName + ", tradeDate="
 				+ tradeDate + ", accountNo=" + accountNo + ", tradeAmount=" + tradeAmount + ", statementCategoryCodeNo="
 				+ statementCategoryCodeNo + ", statementCategoryCodeName=" + statementCategoryCodeName
-				+ ", statementUsageStatusCodeNo=" + statementUsageStatusCodeNo + ", statementUsageStatusCodeName="
-				+ statementUsageStatusCodeName + ", statementDetail=" + statementDetail + ", getStatementNo()="
-				+ getStatementNo() + ", getTradeTargetName()=" + getTradeTargetName() + ", getTradeDate()="
-				+ getTradeDate() + ", getAccountNo()=" + getAccountNo() + ", getTradeAmount()=" + getTradeAmount()
-				+ ", getStatementCategoryCodeNo()=" + getStatementCategoryCodeNo() + ", getStatementCategoryCodeName()="
-				+ getStatementCategoryCodeName() + ", getStatementUsageStatusCodeNo()="
-				+ getStatementUsageStatusCodeNo() + ", getStatementUsageStatusCodeName()="
-				+ getStatementUsageStatusCodeName() + ", getStatementDetail()=" + getStatementDetail() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ ", statementUsageStatusCodeNo=" + statementUsageStatusCodeNo + ", statementDetail=" + statementDetail
+				+ "]";
 	}
 	
 }
