@@ -9,7 +9,6 @@ public class Account {
 	private String accountRegNo;
 	private String accountNo;
 	private String accountUsageStatusCodeNo;
-	private String accountUsageStatusCodeName;
 	private String accountHolder;
 	private String bankCodeNo;
 	private String bankCodeName;
@@ -34,12 +33,6 @@ public class Account {
 	}
 	public void setAccountUsageStatusCodeNo(String accountUsageStatusCodeNo) {
 		this.accountUsageStatusCodeNo = accountUsageStatusCodeNo;
-	}
-	public String getAccountUsageStatusCodeName() {
-		return accountUsageStatusCodeName;
-	}
-	public void setAccountUsageStatusCodeName(String accountUsageStatusCodeName) {
-		this.accountUsageStatusCodeName = accountUsageStatusCodeName;
 	}
 	public String getAccountHolder() {
 		return accountHolder;
@@ -78,14 +71,14 @@ public class Account {
 		this.accountCategoryCodeName = accountCategoryCodeName;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "Account [accountRegNo=" + accountRegNo + ", accountNo=" + accountNo + ", accountUsageStatusCodeNo="
-				+ accountUsageStatusCodeNo + ", accountUsageStatusCodeName=" + accountUsageStatusCodeName
-				+ ", accountHolder=" + accountHolder + ", bankCodeNo=" + bankCodeNo + ", bankCodeName=" + bankCodeName
-				+ ", reference=" + reference + ", accountCategoryCodeNo=" + accountCategoryCodeNo
-				+ ", accountCategoryCodeName=" + accountCategoryCodeName + "]";
+				+ accountUsageStatusCodeNo + ", accountHolder=" + accountHolder + ", bankCodeNo=" + bankCodeNo
+				+ ", bankCodeName=" + bankCodeName + ", reference=" + reference + ", accountCategoryCodeNo="
+				+ accountCategoryCodeNo + ", accountCategoryCodeName=" + accountCategoryCodeName + "]";
 	}
+	
+
 	
 }
