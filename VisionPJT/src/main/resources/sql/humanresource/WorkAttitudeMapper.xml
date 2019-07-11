@@ -5,7 +5,9 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		
 <mapper namespace="WorkAttitudeMapper">
+
 	<resultMap id="WorkAttitudeSelectMap" type="workAttitude" >
+		<result property="workAttitudeNo" column="WORK_ATTITUDE_NO" jdbcType="VARCHAR"/>
 		<result property="employeeNo" column="EMPLOYEE_NO" jdbcType="VARCHAR"/>
 		<result property="employeeName" column="EMPLOYEE_NAME" jdbcType="VARCHAR"/>
 		<result property="workAttitudeCodeNo" column="WORK_ATTITUDE_CODE" jdbcType="VARCHAR"/>
@@ -33,5 +35,46 @@
 				,	#{workAttitudeDate}
 					)
 	</insert>
+	
+	<select id="selectWorkAttitudeList" parameterType="search" resultMap="WorkAttitudeSelectMap">
+		SELECT	w.WORK_ATTITUDE_NO
+			 ,	w.EMPLOYEE_NO
+			 ,	hr.EMPLOYEE_NAME
+			 ,	w.WORK_ATTITUDE_CODE
+			 ,	c.WORK_ATTITUDE_CODE_NAME
+			 ,	w.WORK_ATTITUDE_TIME
+			 ,	w.WORK_ATTITUDE_DATE
+		FROM	HUMAN_RESOURCE_CARD hr
+			 ,	WORK_ATTITUDE w	
+			 ,	WORK_ATTITUDE_CODE c
+	   <where>
+	   			w.WORK_ATTITUDE_CODE	=	c.WORK_ATTITUDE_CODE
+	   	   AND	w.EMPLOYEE_NO       	=   hr.EMPLOYEE_NO;
+	   </where>
+	</select>
+	
+	<update id="updateWorkAttitude" parameterType="workAttitude">
+		UPDATE	WORK_ATTITUDE
+		   SET	
+		   		(
+		   		WORK_ATTITUDE_CODE	=	#{workAttitudeCodeNo}
+		   	 ,	WORK_ATTITUDE_TIME	=	#{workAttitudeTime}
+		   	 ,	WORK_ATTITUDE_DATE	=	#{workAttitudeDate}
+		   		)
+	   <where>	
+	  			WORK_ATTITUDE_NO	=	#{workAttitudeNo}
+	   </where>
+	</update>
+	
+	<update id="updateWorkAttitudeUsageStatus" parameterType="map">
+		UPDATE	WORK_ATTITUDE
+		   SET	
+		   		(
+		   		USAGE_STATUS_CODE_NO	=	#{usageStatus}
+		   		)
+	   <where>
+	   			WORK_ATTITUDE_NO		=	#{workAttitudeNo}
+	   </where>
+	</update>
 
 </mapper>

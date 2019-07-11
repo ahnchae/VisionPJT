@@ -21,6 +21,8 @@ public interface HumanResourceDAO {
 	
 	public HumanResourceCard selectSimpleHumanResourceCardByEmployeeNo(int employeeNo) throws Exception;
 	
+	public List<HumanResourceCard> selectSimpleHumanResourceCardList(Search search) throws Exception;
+	
 	public void updateHumanResourceCard(HumanResourceCard humanResourceCard) throws Exception;
 	
 	public void insertWorkAttitude(WorkAttitude workAttitude) throws Exception;
@@ -55,9 +57,11 @@ public interface HumanResourceDAO {
 	
 	public void updateDepartmentUsageStatus(int departCodeNo, String status) throws Exception;
 	
-	public List<Commute> selectCommuteList(Search search) throws Exception;
+	public List<Commute> selectCommuteList(int employeeNo) throws Exception;
 	
 	public void insertCommute(Commute commute) throws Exception;
+	
+	public void updateCommuteForLeaveWorkTime(Commute commute) throws Exception;
 	
 	public void insertDutyHours(DutyHours dutyHours) throws Exception;
 	

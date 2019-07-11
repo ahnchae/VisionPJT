@@ -11,7 +11,6 @@ public class Vendor {
 	private String vendorCategoryCodeNo;
 	private String vendorCategoryCodeName;
 	private String vendorUsageStatusCodeNo;
-	private String vendorUsageStatusCodeName;
 	private String vendorPhone;
 	private String vendorTel;
 	private String representativeName;
@@ -19,6 +18,7 @@ public class Vendor {
 	private String zipCode;
 	private String detailAddress;
 	private Account vendorAccount;
+	
 	public String getVendorNo() {
 		return vendorNo;
 	}
@@ -48,12 +48,6 @@ public class Vendor {
 	}
 	public void setVendorUsageStatusCodeNo(String vendorUsageStatusCodeNo) {
 		this.vendorUsageStatusCodeNo = vendorUsageStatusCodeNo;
-	}
-	public String getVendorUsageStatusCodeName() {
-		return vendorUsageStatusCodeName;
-	}
-	public void setVendorUsageStatusCodeName(String vendorUsageStatusCodeName) {
-		this.vendorUsageStatusCodeName = vendorUsageStatusCodeName;
 	}
 	public String getVendorPhone() {
 		return vendorPhone;
@@ -102,10 +96,10 @@ public class Vendor {
 	public String toString() {
 		return "Vendor [vendorNo=" + vendorNo + ", vendorName=" + vendorName + ", vendorCategoryCodeNo="
 				+ vendorCategoryCodeNo + ", vendorCategoryCodeName=" + vendorCategoryCodeName
-				+ ", vendorUsageStatusCodeNo=" + vendorUsageStatusCodeNo + ", vendorUsageStatusCodeName="
-				+ vendorUsageStatusCodeName + ", vendorPhone=" + vendorPhone + ", vendorTel=" + vendorTel
-				+ ", representativeName=" + representativeName + ", address=" + address + ", zipCode=" + zipCode
-				+ ", detailAddress=" + detailAddress + ", vendorAccount=" + vendorAccount + "]";
+				+ ", vendorUsageStatusCodeNo=" + vendorUsageStatusCodeNo + ", vendorPhone=" + vendorPhone
+				+ ", vendorTel=" + vendorTel + ", representativeName=" + representativeName + ", address=" + address
+				+ ", zipCode=" + zipCode + ", detailAddress=" + detailAddress + ", vendorAccount=" + vendorAccount
+				+ "]";
 	}
 	
 }

@@ -3,6 +3,7 @@ package com.vision.erp.service.domain;
 public class WorkAttitude {
 
 	//field
+	private String workAttitudeNo;
 	private String employeeNo;
 	private String employeeName;
 	private String workAttitudeCodeNo;
@@ -17,9 +18,18 @@ public class WorkAttitude {
 	}
 	
 	//getter, setter
+	
 	public String getEmployeeNo() {
 		return employeeNo;
 	}
+	public String getWorkAttitudeNo() {
+		return workAttitudeNo;
+	}
+
+	public void setWorkAttitudeNo(String workAttitudeNo) {
+		this.workAttitudeNo = workAttitudeNo;
+	}
+
 	public void setEmployeeNo(String employeeNo) {
 		this.employeeNo = employeeNo;
 	}
@@ -53,12 +63,15 @@ public class WorkAttitude {
 	public void setWorkAttitudeDate(String workAttitudeDate) {
 		this.workAttitudeDate = workAttitudeDate;
 	}
+
 	
 	//toString
 	@Override
 	public String toString() {
-		return "WorkAttitude [employeeNo=" + employeeNo + ", employeeName=" + employeeName + ", workAttitudeCodeNo="
-				+ workAttitudeCodeNo + ", workAttitudeCodeName=" + workAttitudeCodeName + ", workAttitudeTime="
-				+ workAttitudeTime + ", workAttitudeDate=" + workAttitudeDate + "]";
+		return "WorkAttitude [workAttitudeNo=" + workAttitudeNo + ", employeeNo=" + employeeNo + ", employeeName="
+				+ employeeName + ", workAttitudeCodeNo=" + workAttitudeCodeNo + ", workAttitudeCodeName="
+				+ workAttitudeCodeName + ", workAttitudeTime=" + workAttitudeTime + ", workAttitudeDate="
+				+ workAttitudeDate + "]";
 	}
+	
 }
