@@ -19,7 +19,7 @@
   			<typeAlias type="com.vision.erp.service.domain.Commute" alias="commute"/>
   			<typeAlias type="com.vision.erp.service.domain.DutyHours" alias="dutyHours"/>
   			<typeAlias type="com.vision.erp.service.domain.HumanResourceCard" alias="humanResourceCard"/>
-  			<typeAlias type="com.vision.erp.service.domain.Member" alias="member"/>
+  			<typeAlias type="com.vision.erp.service.domain.User" alias="user"/>
   			<typeAlias type="com.vision.erp.service.domain.Notice" alias="notice"/>
   			<typeAlias type="com.vision.erp.service.domain.OrderFromBranch" alias="orderFromBranch"/>
   			<typeAlias type="com.vision.erp.service.domain.OrderFromBranchProduct" alias="orderFromBranchProduct"/>

@@ -7,18 +7,18 @@
 <mapper namespace="VendorMapper">
 
 	<resultMap type="vendor" id="vendorSelectMap">
-		<result property="vendorNo" 					column="vendor_no" 					jdbcType="VARCAHR"/>
-		<result property="vendorName" 					column="vendor_name" 				jdbcType="VARCAHR"/>
-		<result property="vendorCategoryCodeNo" 		column="vendor_category_code_no" 	jdbcType="VARCAHR"/>
-		<result property="vendorCategoryCodeName" 		column="vendor_category_code_name" 	jdbcType="VARCAHR"/>
-		<result property="vendorUsageStatusCodeNo" 		column="usage_status_code_no" 		jdbcType="VARCAHR"/>
-		<result property="vendorUsageStatusCodeName" 	column="usage_status_code_name" 	jdbcType="VARCAHR"/>
-		<result property="vendorPhone" 					column="vendor_phone" 				jdbcType="VARCAHR"/>
-		<result property="vendorTel" 					column="vendor_tel" 				jdbcType="VARCAHR"/>
-		<result property="representativeName" 			column="representative_name" 		jdbcType="VARCAHR"/>
-		<result property="address" 						column="address" 					jdbcType="VARCAHR"/>
-		<result property="zipCode" 						column="zip_code" 					jdbcType="VARCAHR"/>
-		<result property="detailAddress" 				column="detail_address" 			jdbcType="VARCAHR"/>
+		<result property="vendorNo" 					column="vendor_no" 					jdbcType="VARCHAR"/>
+		<result property="vendorName" 					column="vendor_name" 				jdbcType="VARCHAR"/>
+		<result property="vendorCategoryCodeNo" 		column="vendor_category_code_no" 	jdbcType="VARCHAR"/>
+		<result property="vendorCategoryCodeName" 		column="vendor_category_code_name" 	jdbcType="VARCHAR"/>
+		<result property="vendorUsageStatusCodeNo" 		column="usage_status_code_no" 		jdbcType="VARCHAR"/>
+		<result property="vendorUsageStatusCodeName" 	column="usage_status_code_name" 	jdbcType="VARCHAR"/>
+		<result property="vendorPhone" 					column="vendor_phone" 				jdbcType="VARCHAR"/>
+		<result property="vendorTel" 					column="vendor_tel" 				jdbcType="VARCHAR"/>
+		<result property="representativeName" 			column="representative_name" 		jdbcType="VARCHAR"/>
+		<result property="address" 						column="address" 					jdbcType="VARCHAR"/>
+		<result property="zipCode" 						column="zip_code" 					jdbcType="VARCHAR"/>
+		<result property="detailAddress" 				column="detail_address" 			jdbcType="VARCHAR"/>
 		
 		<association property="vendorAccount" javaType="account">
 			<result property="bankCodeNo" 		column="bank_code_no"/>
