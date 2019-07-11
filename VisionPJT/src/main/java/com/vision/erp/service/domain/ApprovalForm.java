@@ -18,6 +18,15 @@ public class ApprovalForm {
 		// TODO Auto-generated constructor stub
 	}
 
+	public ApprovalForm(String approvalFormTitle, String approvalForm, String registrantEmployeeNo,
+			String registrantEmployeeName) {
+		super();
+		this.approvalFormTitle = approvalFormTitle;
+		this.approvalForm = approvalForm;
+		this.registrantEmployeeNo = registrantEmployeeNo;
+		this.registrantEmployeeName = registrantEmployeeName;
+	}
+
 	//getter, setter
 	public String getApprovalFormNo() {
 		return approvalFormNo;

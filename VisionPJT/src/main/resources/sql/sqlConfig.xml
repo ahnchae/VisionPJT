@@ -47,7 +47,7 @@
 			 <mapper resource="sql/humanresource/DepartmentMapper.xml"/>
 			 <mapper resource="sql/humanresource/HumanResourceCardMapper.xml"/>
 			 <mapper resource="sql/humanresource/WorkAttitudeCodeMapper.xml"/>
-			 <mapper resource="sql/humanresource/WorkAttitudeMapper.xml"/>
+			 <mapper resource="sql/humanresource/WorkAttitudeMapper.xml"/> 
 			
 			<!-- Ahn -->
 			 <mapper resource="sql/approval/ApprovalFormMapper.xml"/>
