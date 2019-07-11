@@ -38,7 +38,7 @@ public interface ApprovalDAO {
 	//결재자 가져오기
 	public List<Approver> selectApproverList(String approvalNo) throws Exception;
 	
-	//결재목록 가져오기(상신, 반려, 완료, 대기)
+	//결재목록 가져오기(진행2, 반려3, 완료4, 대기도 02 다만 자기차례일뿐)
 	public List<Approval> selectApprovalList(Search search) throws Exception;
 	
 	//결재서 상세보기
@@ -47,10 +47,12 @@ public interface ApprovalDAO {
 	//결재서상태 변경하기(진행, 완료, 반려)
 	public int updateApprovalStatus(Approval approval) throws Exception;
 	
-	//결재자의 결재상태 변경하기(승인, 반려)
+	//결재자의 결재상태 변경하기(미완0, 결재1)
 	public int updateApproverStatus(Approver approver) throws Exception;
 	
 	//승인한결재자수 변경하기
 	public int updateApproverCountFromApproval(String approvalNo) throws Exception;
 	
+	//결재 완료할 수 있는지 확인하기(승인한결재자=총결재자수)
+	public boolean isApprovalEnd(String approvalNo) throws Exception;
 }

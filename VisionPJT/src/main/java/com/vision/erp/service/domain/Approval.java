@@ -15,6 +15,7 @@ public class Approval {
 	private String approvalStatusCodeNo;
 	private String approvalStatusCodeName;
 	private String approverCount;
+	private String totalApproverCount;
 	
 	//constructor
 	public Approval() {
@@ -22,6 +23,16 @@ public class Approval {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Approval(String approvalTitle, String approvalContent, String approvalFormNo, String approvalStatusCodeNo, String approverCount) {
+		super();
+		this.approvalTitle = approvalTitle;
+		this.approvalContent = approvalContent;
+		this.approvalFormNo = approvalFormNo;
+		this.approvalStatusCodeNo = approvalStatusCodeNo;
+		this.approverCount = approverCount;
+	}
+
+
 	//getter, setter
 	public String getApprovalNo() {
 		return approvalNo;
@@ -114,8 +125,28 @@ public class Approval {
 	public void setApproverCount(String approverCount) {
 		this.approverCount = approverCount;
 	}
+	
 
-	//toString
+	public String getTotalApproverCount() {
+		if(fifthApprover!=null) {
+			return "5";
+		}else if(fourthApprover!=null) {
+			return "4";
+		}else if(thirdApprover!=null) {
+			return "3";
+		}else if(fourthApprover!=null) {
+			return "2";
+		}
+		
+		return totalApproverCount;
+	}
+
+
+	public void setTotalApproverCount(String totalApproverCount) {
+		this.totalApproverCount = totalApproverCount;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Approval [approvalNo=" + approvalNo + ", approvalTitle=" + approvalTitle + ", approvalContent="
@@ -123,7 +154,8 @@ public class Approval {
 				+ ", secondApprover=" + secondApprover + ", thirdApprover=" + thirdApprover + ", fourthApprover="
 				+ fourthApprover + ", fifthApprover=" + fifthApprover + ", approvalFormNo=" + approvalFormNo
 				+ ", approvalStatusCodeNo=" + approvalStatusCodeNo + ", approvalStatusCodeName="
-				+ approvalStatusCodeName + ", approverCount=" + approverCount + "]";
+				+ approvalStatusCodeName + ", approverCount=" + approverCount + ", totalApproverCount="
+				+ totalApproverCount + "]";
 	}
 	
 	
