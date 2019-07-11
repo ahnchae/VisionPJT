@@ -49,7 +49,7 @@ public class ApprovalDAOImpl implements ApprovalDAO {
 		return sqlSession.selectOne("ApprovalFormMapper.selectApprovalFormDetail", approvalFormNo);
 	}
 
-	//결재서양식 삭제, 복구하기
+	//결재서양식 삭제하기
 	@Override
 	public int updateApprovalFormUsageStatus(ApprovalForm approvalForm) throws Exception {
 		// TODO Auto-generated method stub

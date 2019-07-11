@@ -67,11 +67,24 @@ public class ProductManagementDAOImplcodmsTest{
 	}
 	
 	//[본사]주문물품 상태변경(출하완료, 출하대기, 출하취소)
-	
+	//@Test
+	public void updateOrderFromBranchProductStatusTest() throws Exception{
+		OrderFromBranchProduct ofbp = new OrderFromBranchProduct("10005", "300", "10005", "2", "600");
+		ofbp.setNumbering("10001");
+		ofbp.setOrderFromBranchProductStatusCodeNo("03");
+		int i = codmsDAO.updateOrderFromBranchProductStatus(ofbp);
+		System.out.println(i);
+	}
 	
 	
 	//[본사]주문물품 모두 출하완료인지 확인, 출하대기인 상품개수 return
-	
+	//@Test
+	public void selectOrderFromBranchProduct() throws Exception {
+		OrderFromBranch ofb = new OrderFromBranch("1001", "400", "b1003", "1111/11/11");
+		ofb.setOrderFromBranchNo("10005");
+		int i = codmsDAO.selectOrderFromBranchProduct(ofb);
+		System.out.println("출하대기인 상품개수 : "+i);
+	}
 	
 	
 }

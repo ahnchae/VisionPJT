@@ -22,7 +22,7 @@ public interface ApprovalDAO {
 	//결재서양식 상세보기
 	public ApprovalForm selectApprovalFormDetail(String approvalFormNo) throws Exception;
 	
-	//결재서양식 삭제, 복구하기
+	//결재서양식 삭제하기
 	public int updateApprovalFormUsageStatus(ApprovalForm approvalForm) throws Exception;
 
 	//결재서양식 useCount 올리기
