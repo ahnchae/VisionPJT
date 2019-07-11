@@ -62,12 +62,12 @@
 		)
 	</insert>
 	
-	<select id="selectVendorDetail" parameterType="int" resultMap="vendorSelectMap">
+	<select id="selectVendorDetail" parameterType="string" resultMap="vendorSelectMap">
 		SELECT 
 			vendor_no, 
 			vendor_name,
 			vendor_category_code_no,
-			vendor_category_code_name,
+			CODE_FUNCTION('vendor',vendor_category_code_no) AS vendor_category_code_name,
 			vendor_phone,
 			vendor_tel,
 			representative_name,
@@ -75,7 +75,7 @@
 			zip_code,
 			detail_address,
 			bank_code_no,
-			bank_code_name,
+			CODE_FUNCTION('bank', bank_code_no) AS bank_code_name,
 			vendor_account_no,
 			account_holder
 		FROM
@@ -115,7 +115,7 @@
 			vendor_no,
 			vendor_name,
 			vendor_category_code_no,
-			vendor_category_code_name,
+			CODE_FUNCTION('vendor',vendor_category_code_no) AS vendor_category_code_name,
 			vendor_phone,
 			vendor_tel,
 			representative_name,
@@ -123,7 +123,7 @@
 			zip_code,
 			detail_address,
 			bank_code_no,
-			bank_code_name,
+			CODE_FUNCTION('bank', bank_code_no) AS bank_code_name,
 			vendor_account_no,
 			account_holder
 		FROM

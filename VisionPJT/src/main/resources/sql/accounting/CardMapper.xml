@@ -47,15 +47,15 @@
 		)
 	</insert>
 	
-	<select id="selectCardDetail" parameterType="int" resultMap="cardSelectMap">
+	<select id="selectCardDetail" parameterType="string" resultMap="cardSelectMap">
 		SELECT
 			c.card_reg_no,
 			c.card_no,
 			c.card_name,
 			c.card_company_code_no,
-			c.card_company_code_name,
+			CODE_FUNCTION('card', c.card_company_code_no) AS card_company_code_name,
 			c.card_category_code_no,
-			c.card_category_code_name,
+			CODE_FUNCTION('cardCategory', c.card_category_code_no) AS card_category_code_name,
 			c.account_no,
 			c.card_manager,
 			hr.employee_name card_manager_name,
@@ -95,12 +95,12 @@
 			c.card_reg_no,
 			c.card_no,
 			c.card_name,
-			c.card_company_code_name,
-			c.card_category_code_name,
+			CODE_FUNCTION('card', c.card_company_code_no) AS card_company_code_name,
+			CODE_FUNCTION('cardCategory', c.card_category_code_no) AS card_category_code_name,
 			c.account_no,
 			c.card_manager,
 			hr.employee_name card_manager_name,
-			c.card_image
+			c.card_image,
 			c.usage_status_code_no
 		FROM
 			card c, human_resource_card hr
@@ -121,7 +121,7 @@
 		ORDER BY card_reg_no ASC
 	</select>
 	
-	<select id="checkDuplicateCard" parameterType="int" resultMap="cardSelectMap">
+	<select id="checkDuplicateCard" parameterType="string" resultMap="cardSelectMap">
 		SELECT
 			card_no
 		FROM

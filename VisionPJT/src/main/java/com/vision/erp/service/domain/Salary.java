@@ -9,12 +9,14 @@ public class Salary {
 	private String salaryNumbering;
 	private String salaryDate;
 	private String employeeNo;
+	private String employeeName;
 	private String individualTotalSalary;
 	private String salaryStatusCodeNo;
 	private String salaryStatusCodeName;
 	private String wage;
 	private String totalRegularWorkTime;
 	private String totalExtendWorkTime;
+	
 	public String getSalaryNumbering() {
 		return salaryNumbering;
 	}
@@ -32,6 +34,12 @@ public class Salary {
 	}
 	public void setEmployeeNo(String employeeNo) {
 		this.employeeNo = employeeNo;
+	}
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 	public String getIndividualTotalSalary() {
 		return individualTotalSalary;
@@ -70,14 +78,13 @@ public class Salary {
 		this.totalExtendWorkTime = totalExtendWorkTime;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "Salary [salaryNumbering=" + salaryNumbering + ", salaryDate=" + salaryDate + ", employeeNo="
-				+ employeeNo + ", individualTotalSalary=" + individualTotalSalary + ", salaryStatusCodeNo="
-				+ salaryStatusCodeNo + ", salaryStatusCodeName=" + salaryStatusCodeName + ", wage=" + wage
-				+ ", totalRegularWorkTime=" + totalRegularWorkTime + ", totalExtendWorkTime=" + totalExtendWorkTime
-				+ "]";
+				+ employeeNo + ", employeeName=" + employeeName + ", individualTotalSalary=" + individualTotalSalary
+				+ ", salaryStatusCodeNo=" + salaryStatusCodeNo + ", salaryStatusCodeName=" + salaryStatusCodeName
+				+ ", wage=" + wage + ", totalRegularWorkTime=" + totalRegularWorkTime + ", totalExtendWorkTime="
+				+ totalExtendWorkTime + "]";
 	}
 	
 }
