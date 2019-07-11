@@ -16,6 +16,13 @@ public class Approver {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Approver(String approvalNo, String employeeNo, String ordinal) {
+		super();
+		this.approvalNo = approvalNo;
+		this.employeeNo = employeeNo;
+		this.ordinal = ordinal;
+	}
+
 	//getter, setter
 	public String getApproverNumbering() {
 		return approverNumbering;
@@ -26,8 +33,9 @@ public class Approver {
 	public String getApprovalNo() {
 		return approvalNo;
 	}
-	public void setApprovalNo(String approvalNo) {
+	public Approver setApprovalNo(String approvalNo) {
 		this.approvalNo = approvalNo;
+		return this;
 	}
 	public String getEmployeeNo() {
 		return employeeNo;
@@ -56,8 +64,9 @@ public class Approver {
 	public String getApprovalStatus() {
 		return approvalStatus;
 	}
-	public void setApprovalStatus(String approvalStatus) {
+	public Approver setApprovalStatus(String approvalStatus) {
 		this.approvalStatus = approvalStatus;
+		return this;
 	}
 	
 	//toString

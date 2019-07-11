@@ -7,12 +7,13 @@
 <mapper namespace="ApprovalMapper">
  		
 	<resultMap id="approvalSelectMap" type="approval">
-		<result property="approvalNo" 			column="GROUP_CODE" 			jdbcType="VARCHAR"/>
-		<result property="approvalTitle"	column="GROUP_CODE_NAME" 		jdbcType="VARCHAR" />
-		<result property="approvalContent" 	column="CODE_NO" 		jdbcType="VARCHAR" />
-		<result property="submitDate" 				column="CODE_NAME" 					jdbcType="VARCHAR" />
-		<result property="approvalFormNo" 				column="CODE_USAGE_STATUS" 					jdbcType="VARCHAR" />
-		<result property="approvalStatusCodeNo" 				column="CODE_No" 					jdbcType="VARCHAR" />
+		<result property="approvalNo" 			column="APPROVAL_NO" 			jdbcType="VARCHAR"/>
+		<result property="approvalTitle"	column="APPROVAL_TITLE" 		jdbcType="VARCHAR" />
+		<result property="approvalContent" 	column="APPROVAL_CONTENT" 		jdbcType="VARCHAR" />
+		<result property="submitDate" 				column="SUBMIT_DATE" 					jdbcType="VARCHAR" />
+		<result property="approverCount" 				column="APPROVER_COUNT" 					jdbcType="VARCHAR" />
+		<result property="totalApproverCount" 				column="TOTAL_APPROVER_COUNT" 					jdbcType="VARCHAR" />
+		<result property="approvalStatusCodeNo" 				column="APPROVAL_STATUS_CODE" 					jdbcType="VARCHAR" />
 		<result property="approvalStatusCodeName" 				column="CODE_Name" 					jdbcType="VARCHAR" />
 		<!--    결재자는 set메서드로 주입하는 것이 좋을 것 같다.-->	
 	</resultMap>
@@ -29,49 +30,54 @@
 	
 	<!-- 결재상신 -->
 	<insert 	id="insertApproval"		parameterType="approval" >
-		<selectKey keyProperty="seq_approval_no.currval" resultType="string" order="AFTER">
+		<selectKey keyProperty="approvalNo" resultType="string" order="AFTER">
 	    	select seq_approval_no.currval FROM DUAL
 	  	</selectKey>
 	 	INSERT
 		INTO approval( approval_no, approval_title, approval_content, submit_date, approval_status_code, approver_count, total_approver_count) 
-		VALUES	 ( seq_approval_no.nextval, #{approvalTitle}, #{approvalContent}, TO_CHAR(SYSDATE, 'YYYY/MM/DD'), '02', '1', #{approverCount} 	)
+		VALUES	 ( seq_approval_no.nextval, #{approvalTitle}, #{approvalContent}, TO_CHAR(SYSDATE, 'YYYY/MM/DD'), '02', '1', #{totalApproverCount} 	)
 	</insert>
 	
 	<!-- 결재자 등록하기 -->
 	<insert 	id="insertApprover"		parameterType="approver" >
 	 	INSERT
-		INTO approver( approver_numbering, approval_no, employee_no, ordinal, approval_status ) 
-		VALUES	 ( seq_approver_numbering.nextval, #{approvalNo}, #{employeeNo}, #{ordinal}, '0' 	)
+		INTO approver( approver_numbering, approval_no, employee_no, ordinal, approval_status, rank_code_name, signature_image ) 
+		VALUES	 ( seq_approver_numbering.nextval, #{approvalNo}, #{employeeNo}, #{ordinal}, '0', #{employeeRankCodeName : VARCHAR}, #{employeeSignatureImage : VARCHAR})
 	</insert>
 	
 	<!-- 결재자 가져오기 -->
 	<select id="selectApproverList" parameterType="string" resultMap="approverSelectMap">
 		SELECT
 		approver_numbering, approval_no, employee_no, ordinal, approval_status, rank_code_name, signature_image
-		FROM approver
+		FROM approver ap
 		WHERE approval_no = #{value}
+		ORDER BY ordinal ASC
 	</select>
 	
 	<!-- 결재목록 가져오기(상신, 반려, 완료, 대기) -->
 	<select id="selectApprovalList"	parameterType="search"	resultMap="approvalSelectMap">
 		SELECT
-		al.approval_no, al.approval_title, al.approval_content, al.submit_date, al.approval_status_code, al.approver_count, al.total_approver_count 
+		al.approval_no, al.approval_title, al.approval_content, al.submit_date, al.approval_status_code, CODE_FUNCTION('approvalStatusForIndividual', al.approval_status_code) approval_status_code_name, al.approver_count, al.total_approver_count 
 		FROM approval al, approver er
 		WHERE al.approval_no = er.approval_no 
 			  AND er.employee_no=#{searchKeyword} 
-		<if test="searchCondition = 대기">
-			  AND al.approver_count = er.order
-			  AND al.approval_status_code NOT IN ('완료', '반려')
+		<if test="searchCondition==1">
+			  AND al.approver_count = er.ordinal
+			  AND al.approval_status_code IN ('02')
 		</if>
-		<if test="searchCondition = 진행">
-  			  AND al.approval_status_code NOT IN ('완료', '반려')
+		<if test="searchCondition==2">
+			  AND er.ordinal = '0'
+  			  AND al.approval_status_code IN ('02')
 		</if>
-		<if test="searchCondition = 완료">
-  			  AND al.approval_status_code IN ('완료')
+		<if test="searchCondition==4">
+			  AND er.ordinal = '0'
+  			  AND al.approval_status_code IN ('04')
 		</if>
-		<if test="searchCondition = 반려">
-  			  AND al.approval_status_code IN ('반려')
+		<if test="searchCondition==3">
+			  AND er.ordinal = '0'
+  			  AND al.approval_status_code IN ('03')
 		</if>
+		ORDER BY approval_no DESC
 	 </select>
 	 
 	 <!-- 결재서 상세보기  -->
@@ -97,7 +103,7 @@
 	   	<set>
 	   	  approval_status = #{approvalStatus},
 	   	</set>
-	   	WHERE approver_numbering = #{approverNumbering}
+	   	WHERE approval_no = #{approvalNo} AND ordinal = #{ordinal}
 	 </update>
 	 
 	 <!-- 승인한결재자수 변경하기 -->

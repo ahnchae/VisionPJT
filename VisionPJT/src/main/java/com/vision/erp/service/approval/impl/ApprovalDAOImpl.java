@@ -17,8 +17,15 @@ import com.vision.erp.service.domain.SimpleHumanResourceCard;
 @Repository("approvalDAOImpl")
 public class ApprovalDAOImpl implements ApprovalDAO {
 	
+	//field
 	@Resource(name="sqlSession")
 	private SqlSession sqlSession;
+	
+	//constructor
+	public ApprovalDAOImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	/////////////////////결재서양식//////////////////////////
 	//결재서양식 리스트 가져오기
@@ -69,6 +76,7 @@ public class ApprovalDAOImpl implements ApprovalDAO {
 	@Override
 	public int insertApproval(Approval approval) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println(approval);
 		return sqlSession.insert("ApprovalMapper.insertApproval", approval);
 	}
 
@@ -86,7 +94,7 @@ public class ApprovalDAOImpl implements ApprovalDAO {
 		return sqlSession.selectList("ApprovalMapper.selectApproverList", approvalNo);
 	}
 
-	//결재목록 가져오기(상신, 반려, 완료, 대기)
+	//결재목록 가져오기(진행2, 반려3, 완료4, 대기도 02 다만 자기차례일뿐)
 	@Override
 	public List<Approval> selectApprovalList(Search search) throws Exception {
 		// TODO Auto-generated method stub
@@ -107,7 +115,7 @@ public class ApprovalDAOImpl implements ApprovalDAO {
 		return sqlSession.update("ApprovalMapper.updateApprovalStatus", approval);
 	}
 
-	//결재자의 결재상태 변경하기(승인, 반려)
+	//결재자의 결재상태 변경하기(미완0, 승인1)
 	@Override
 	public int updateApproverStatus(Approver approver) throws Exception {
 		// TODO Auto-generated method stub
@@ -118,7 +126,18 @@ public class ApprovalDAOImpl implements ApprovalDAO {
 	@Override
 	public int updateApproverCountFromApproval(String approvalNo) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("ApprovalMapper.updateApproverCountFromApproval", approvalNo);
+	}
+
+	//결재 완료할 수 있는지 확인하기(승인한결재자=총결재자수)
+	@Override
+	public boolean isApprovalEnd(String approvalNo) throws Exception {
+		// TODO Auto-generated method stub
+		Approval approval = selectApprovalDetail(approvalNo);
+		if(approval.getApproverCount().equals(approval.getTotalApproverCount())) {
+			return true;
+		}
+		return false;
 	}
 	
 
